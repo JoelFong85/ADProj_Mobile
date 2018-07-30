@@ -31,6 +31,11 @@
         <activity android:name=".Clerk_RequisitionOrder_ItemDetailsActivity" />
         <activity android:name=".ClerkAdjustmentInventoryActivity" />
         <activity android:name=".ClerkAdjustmentForm"></activity>
+        <activity android:name=".Request_Cart" />
+        <activity android:name=".NewRequestActivity" />
+        <activity android:name=".RequestConfirm" />
+        <activity android:name=".DisbursementList" />
+        <activity android:name=".AcknowledgeDisbursement"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

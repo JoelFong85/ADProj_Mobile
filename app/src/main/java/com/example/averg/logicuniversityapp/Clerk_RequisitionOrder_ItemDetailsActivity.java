@@ -269,10 +269,9 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
         @Override
         protected String doInBackground(Adjustment... params) {
             Adjustment adj=params[0];
-            return Adjustment.CreateAdj(adj,Constants.TOKEN);
+            return Adjustment.CreateAdj(adj);
         }
     }
-
 
 }
 

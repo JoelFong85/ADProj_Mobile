@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Quantity"
+        app:layout_constraintBottom_toTopOf="@+id/buttonremove"
+        app:layout_constraintEnd_toStartOf="@+id/editText3"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458" />
+
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="81dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginStart="100dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/buttonupdate"
+        app:layout_constraintStart_toEndOf="@id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonremove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="44dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="DeleteItem"
+        app:layout_constraintEnd_toStartOf="@+id/buttonupdate"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <Button
+        android:id="@+id/buttonupdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_green_light"
+        android:text="UpdateItem"
+        app:layout_constraintStart_toEndOf="@id/buttonremove"
+        app:layout_constraintTop_toBottomOf="@id/editText3" />
+</android.support.constraint.ConstraintLayout>

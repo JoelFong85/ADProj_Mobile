@@ -66,6 +66,16 @@ public class Clerk_MainActivity extends Activity {
             }
         });
 
+
+        Button disbursementLocaMenuButton = findViewById(R.id.DisbursementLocaMenuButton);
+        disbursementLocaMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), DisbursementList.class);
+                startActivity(i);
+            }
+        });
+
         // Logout button logs the user out
         Button logoutButton = findViewById(R.id.LogoutMenuButton);
         logoutButton.setOnClickListener(new View.OnClickListener(){
