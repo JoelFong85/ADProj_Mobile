@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Clerk_MainActivity">
+
+    <Button
+        android:id="@+id/requisitionOrderSearchMenuButton"
+        android:layout_width="138dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:drawableTop="@android:drawable/ic_menu_search"
+        android:text="Search by Requisition Order"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/WeeklyCollectionListMenuButton"
+        android:layout_width="144dp"
+        android:layout_height="135dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="28dp"
+        android:drawableTop="@android:drawable/ic_menu_view"
+        android:text="View Weekly Collection List"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/OrderByDeptLinkButton"
+        android:layout_width="144dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:drawableTop="@android:drawable/ic_menu_sort_alphabetically"
+        android:text="Orders by Department"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchMenuButton" />
+
+    <Button
+        android:id="@+id/DisbursementLocaMenuButton"
+        android:layout_width="144dp"
+        android:layout_height="135dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="28dp"
+        android:drawableTop="@android:drawable/ic_menu_mylocation"
+        android:text="Disbursement Locations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyCollectionListMenuButton" />
+
+    <Button
+        android:id="@+id/StockTakeMenuButton"
+        android:layout_width="144dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:drawableTop="@android:drawable/ic_menu_sort_by_size"
+        android:text="Stock Take"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OrderByDeptLinkButton" />
+
+    <Button
+        android:id="@+id/LogoutMenuButton"
+        android:layout_width="144dp"
+        android:layout_height="135dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="28dp"
+        android:drawableTop="@android:drawable/ic_menu_revert"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DisbursementLocaMenuButton" />
+</android.support.constraint.ConstraintLayout>
