@@ -79,6 +79,7 @@ public class Clerk_MainActivity extends Activity {
 
         @Override
         protected JSONObject doInBackground(String... strings) {
+            // Tell the server to logout
             SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
             return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Logout/" + pref.getString(Constants.PREFERENCE_TOKEN, "Token retrieval failed"));
         }

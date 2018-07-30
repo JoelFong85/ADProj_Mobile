@@ -2,6 +2,7 @@ package com.example.averg.logicuniversityapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.tv.TvContract;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -68,12 +69,13 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
         else{
             // Run the Async task
+            new PrepareTask(this).execute();
         }
 
 
     }
 
-
+    // Loads the information on the item details page.
     private class InventoryTask extends AsyncTask<String, Void, JSONObject> {
 
         private final WeakReference<Activity> weakActivity;
@@ -105,6 +107,27 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
                 qtyOrderedTextView.setText(requisitionQuantity);
                 uomTextView.setText(result.getString("unit_of_measurement"));
 
+                // Set Quantity to collect to be the smaller of quantity available and quantity ordered.
+                TextView qtyAvailable = findViewById(R.id.details_QtyAvailable);
+                int available = Integer.parseInt(qtyAvailable.getText().toString());
+
+                TextView qtyOrdered = findViewById(R.id.details_QtyOrdered);
+                int ordered = Integer.parseInt(qtyOrdered.getText().toString());
+
+                EditText qtyToCollect = findViewById(R.id.collectQuantityEditText);
+                if(available <= ordered) {
+                    qtyToCollect.setText(String.valueOf(available));
+                }
+
+                else if(available >= ordered) {
+                    qtyToCollect.setText(String.valueOf(ordered));
+                }
+
+                else{
+                    qtyToCollect.setText(0);
+                }
+
+
                 // Enable the prepare button once ready.
                 findViewById(R.id.details_prepareButton).setEnabled(true);
 
@@ -116,8 +139,8 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
 
 
-    //Async task for our lovely submit button.
-    private class PrepareTask extends AsyncTask<String, Void, JSONObject> {
+    //Async task for our lovely prepare button.
+    private class PrepareTask extends AsyncTask<String, Void, String> {
 
         private final WeakReference<Activity> weakActivity;
         private String requisitionQuantity;
@@ -126,17 +149,53 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             this.weakActivity = new WeakReference<>(myActivity);
         }
 
-        protected JSONObject doInBackground(String... params) {
+        protected String doInBackground(String... params) {
+            // Fetch the variables
+            Intent intent = getIntent();
+            String requisitionId = intent.getStringExtra("requisitionId");
+
+            TextView descriptionTextView = findViewById(R.id.details_Description);
+            TextView itemCodeTextView = findViewById(R.id.details_ItemCode);
+            TextView qtyAvailableTextView = findViewById(R.id.details_QtyAvailable);
+            TextView qtyOrderedTextView = findViewById(R.id.details_QtyOrdered);
+            TextView uomTextView = findViewById(R.id.details_UOM);
+            EditText quantityCollectedEditText = findViewById(R.id.collectQuantityEditText);
+            EditText quantityPendingEditText = findViewById(R.id.collectQuantityEditText);
+            //EditText quantityCollectedEditText = findViewById(R.id.collectQuantityEditText);
+
+            String itemNumber = itemCodeTextView.getText().toString();
+            String description = descriptionTextView.getText().toString();
+            String unitOfMeasurement = uomTextView.getText().toString();
+            int quantityOrdered = Integer.parseInt(qtyOrderedTextView.getText().toString());
+            int quantityCollected = Integer.parseInt(quantityCollectedEditText.getText().toString());
+            int quantityPending = Integer.parseInt(qtyOrderedTextView.getText().toString());
+            int quantityCurrent = Integer.parseInt(qtyOrderedTextView.getText().toString());
+
+
             // Create a JSON to deliver the payload
             JSONObject j = new JSONObject();
+            try {
+                j.put("RequisitionId", requisitionId);
+                j.put("ItemNumber", itemNumber);
+                j.put("Description", description);
+                j.put("UnitOfMeasurement", unitOfMeasurement);
+                j.put("QuantityOrdered", quantityOrdered);
+                j.put("CollectedQty", quantityCollected);
+                j.put("PendingQty", quantityPending);
+                j.put("CurrentInventoryQty", quantityCurrent);
 
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
 
-            return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Inventory/" + params[0]);
+            // Sort collected goods
+            // Deduct from inventory
+            return JSONParser.postStream(Constants.SERVICE_HOST + "/WarehouseCollection/Sort", j.toString());
         }
 
         @Override
-        protected void onPostExecute(JSONObject result) {
-
+        protected void onPostExecute(String result) {
         }
     }
 }

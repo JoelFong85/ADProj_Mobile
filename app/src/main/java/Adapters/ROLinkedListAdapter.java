@@ -50,6 +50,7 @@ public class ROLinkedListAdapter extends ArrayAdapter<RequisitionOrder> {
             @Override
             public void onClick(View view) {
                 // Start Special Orders Collection List Activity
+
                 Intent i = new Intent(getContext().getApplicationContext(), Clerk_RequisitionOrder_ItemDetailsActivity.class);
                 i.putExtra("requisitionId", ro.getRequisitionId());
                 i.putExtra("itemNumber", ro.getItemNumber());
