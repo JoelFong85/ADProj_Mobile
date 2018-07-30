@@ -35,9 +35,9 @@ public class Inventory extends HashMap<String, String> {
 
     }
 
-    public static List<Inventory> GetActiveInventories(String token){
+    public static List<Inventory> GetActiveInventories(){
         List<Inventory> list = new ArrayList();
-        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST+"/Inventory/Active/"+token);
+        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST+"/Inventory/Active/"+Constants.TOKEN);
         try {
             for (int i =0; i<a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
@@ -61,9 +61,9 @@ public class Inventory extends HashMap<String, String> {
         return(list);
     }
 
-    public static List<Inventory> GetInventorySearchResult(String search, String token){
+    public static List<Inventory> GetInventorySearchResult(String search){
         List<Inventory> list = new ArrayList();
-        JSONArray a =JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST+"/Inventory/"+search+"/"+token);
+        JSONArray a =JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST+"/Inventory/"+search+"/"+Constants.TOKEN);
         try {
             for (int i =0; i<a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
@@ -87,9 +87,9 @@ public class Inventory extends HashMap<String, String> {
         return(list);
     }
 
-    public static Inventory GetInventoryByItemCode(String itemcode, String token){
+    public static Inventory GetInventoryByItemCode(String itemcode){
         Inventory item= new Inventory();
-        JSONObject a =JSONParser.getJSONFromUrl(Constants.SERVICE_HOST+"/Inventory/ItemCode/"+itemcode+"/"+token);
+        JSONObject a =JSONParser.getJSONFromUrl(Constants.SERVICE_HOST+"/Inventory/ItemCode/"+itemcode+"/"+Constants.TOKEN);
         try {
             item =new Inventory(
                     a.getString("item_number"),

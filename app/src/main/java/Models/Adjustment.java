@@ -23,14 +23,14 @@ public class Adjustment extends HashMap<String, String> {
         put("EmployeeRemark",EmployeeRemark);
     }
 
-    public static String CreateAdj(Adjustment adj, String token){
+    public static String CreateAdj(Adjustment adj){
         JSONObject jadjustment = new JSONObject();
 
         try {
             jadjustment.put("ItemNumber", adj.get("ItemNumber"));
             jadjustment.put("AdjustmentQty", adj.get("AdjustmentQty"));
             jadjustment.put("EmployeeRemark", adj.get("EmployeeRemark"));
-            String result = JSONParser.postStream(Constants.SERVICE_HOST+"/Adjustment/Create/"+token, jadjustment.toString());
+            String result = JSONParser.postStream(Constants.SERVICE_HOST+"/Adjustment/Create/"+Constants.TOKEN, jadjustment.toString());
             return result;
         } catch (Exception e) {
             Log.e("CreateAdjustment", "JSONArray error");
