@@ -13,8 +13,4 @@ public class Constants {
     public static String ROLES_EMPLOYEE = "employee";
     public static String ROLES_DEPARTMENT_REPRESENTATIVE = "deprep";
     public static String ROLES_DEPARTMENT_HEAD = "dephead";
-
-    // Shared Preference
-    public static String PREFERENCE_NAME = "preference";
-    public static String PREFERENCE_TOKEN = "token";
 }

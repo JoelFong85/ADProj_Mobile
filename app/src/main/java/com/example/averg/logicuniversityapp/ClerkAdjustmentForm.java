@@ -94,6 +94,11 @@ public class ClerkAdjustmentForm extends Activity {
             Adjustment adj=params[0];
             return Adjustment.CreateAdj(adj);
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            showAToast(s);
+        }
     }
 
     private class FetchItemDetails extends AsyncTask<String, Void, Inventory> {

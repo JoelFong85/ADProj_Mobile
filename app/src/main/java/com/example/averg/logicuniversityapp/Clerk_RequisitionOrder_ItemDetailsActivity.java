@@ -88,7 +88,7 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             // Run the Async tasks
             new DeductFromInventoryTask(this).execute();
             new SpecialRequestUpdateTask(this).execute();
-            new CreateAdjustment(this).execute(adj);
+            new CreateAdjustment(Clerk_RequisitionOrder_ItemDetailsActivity.this).execute(adj);
         }
 
 
@@ -190,6 +190,7 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
                 j.put("QuantityOrdered", 0);
                 j.put("UnitOfMeasurement", "");
                 j.put("CollectedQty", quantityCollected);
+                j.put("CurrentInventoryQty", 0);
             }
             catch (Exception ex){
                 ex.printStackTrace();
