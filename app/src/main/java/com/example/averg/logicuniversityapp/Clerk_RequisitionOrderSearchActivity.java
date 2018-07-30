@@ -1,6 +1,7 @@
 package com.example.averg.logicuniversityapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -92,14 +93,18 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity {
                 // Add listeners to each row on the listview.
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
 
+                        // Start a new activity when a row is clicked on
+                        RequisitionOrder ro = (RequisitionOrder) adapter.getItemAtPosition(position);
+                        Intent i = new Intent(getApplicationContext(), Clerk_RequisitionOrder_ItemDetailsActivity.class);
+                        i.putExtra("requisitionId", ro.getRequisitionId());
+                        i.putExtra("itemNumber", ro.getItemNumber());
+                        i.putExtra("quantityOrdered", ro.getItemRequisitionQuantity());
+
+                        startActivity(i);
                     }
                 });
-
-
-
-
 
             } catch (Exception ex) {
                 Toast t = Toast.makeText(getApplicationContext(), ex.toString(), Toast.LENGTH_SHORT);
