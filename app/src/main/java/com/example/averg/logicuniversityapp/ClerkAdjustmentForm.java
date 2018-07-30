@@ -20,7 +20,6 @@ import Utilities.Constants;
 
 public class ClerkAdjustmentForm extends Activity {
     String ItemNumber;
-    String token;
     Toast toast;
     Inventory a;
 
@@ -28,8 +27,6 @@ public class ClerkAdjustmentForm extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clerk_adjustment_form);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
-        token= pref.getString(Constants.PREFERENCE_TOKEN, "Token retrieval failed");
 
         Intent intent = getIntent();
         ItemNumber = intent.getStringExtra("item_number");
@@ -95,7 +92,7 @@ public class ClerkAdjustmentForm extends Activity {
         @Override
         protected String doInBackground(Adjustment... params) {
             Adjustment adj=params[0];
-            return Adjustment.CreateAdj(adj,token);
+            return Adjustment.CreateAdj(adj);
         }
     }
 
@@ -109,7 +106,7 @@ public class ClerkAdjustmentForm extends Activity {
         @Override
         protected Inventory doInBackground(String... params) {
             String itemcode=params[0];
-            return Inventory.GetInventoryByItemCode(itemcode,token);
+            return Inventory.GetInventoryByItemCode(itemcode);
         }
 
         @Override

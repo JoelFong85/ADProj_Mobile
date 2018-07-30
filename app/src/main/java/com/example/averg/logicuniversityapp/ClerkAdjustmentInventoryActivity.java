@@ -19,15 +19,14 @@ import Utilities.Constants;
 public class ClerkAdjustmentInventoryActivity extends Activity implements SearchView.OnQueryTextListener{
     public static final String Tag="ClerkAdjInventory";
     List<Inventory> list;
-    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clerk_adjustment_inventory);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
-        token= pref.getString(Constants.PREFERENCE_TOKEN, "Token retrieval failed");
-        new GetInventoryList(this).execute(token);
+        //SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
+        //token= pref.getString(Constants.PREFERENCE_TOKEN, "Token retrieval failed");
+        new GetInventoryList(this).execute();
         SearchView sv = findViewById(R.id.searchView2);
         sv.setOnQueryTextListener(this);
     }
@@ -35,18 +34,18 @@ public class ClerkAdjustmentInventoryActivity extends Activity implements Search
     @Override
     public boolean onQueryTextSubmit(String s) {
         if(s.trim().length()>0){
-            new GetSearchResult(this).execute(s,token);
+            new GetSearchResult(this).execute(s);
         }
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
-        new GetInventoryList(this).execute(token);
+        new GetInventoryList(this).execute();
         return false;
     }
 
-    private class GetInventoryList extends AsyncTask<String, Void, List<Inventory>>{
+    private class GetInventoryList extends AsyncTask<Void, Void, List<Inventory>>{
         private WeakReference<Activity> weakActivity;
 
         public GetInventoryList(Activity myactivity) {
@@ -54,8 +53,8 @@ public class ClerkAdjustmentInventoryActivity extends Activity implements Search
         }
 
         @Override
-        protected List<Inventory> doInBackground(String... params) {
-            return Inventory.GetActiveInventories(params[0]);
+        protected List<Inventory> doInBackground(Void... params) {
+            return Inventory.GetActiveInventories();
         }
         @Override
         protected void onPostExecute(List<Inventory> items) {
@@ -73,7 +72,7 @@ public class ClerkAdjustmentInventoryActivity extends Activity implements Search
 
         @Override
         protected List<Inventory> doInBackground(String... params) {
-            return Inventory.GetInventorySearchResult(params[0],params[1]);
+            return Inventory.GetInventorySearchResult(params[0]);
         }
 
         @Override
