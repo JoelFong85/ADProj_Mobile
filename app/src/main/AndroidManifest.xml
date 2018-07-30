@@ -28,7 +28,9 @@
         <activity android:name=".Clerk_OrdersByDept_Activity" />
         <activity android:name=".User_RequestSummaryActivity" />
         <activity android:name=".DebugActivity" />
-        <activity android:name=".Clerk_RequisitionOrder_ItemDetailsActivity"></activity>
+        <activity android:name=".Clerk_RequisitionOrder_ItemDetailsActivity" />
+        <activity android:name=".ClerkAdjustmentInventoryActivity" />
+        <activity android:name=".ClerkAdjustmentForm"></activity>
     </application>
 
 </manifest>

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LogicUniversityApp</string>
+    <string name="adjTitle">Item Details</string>
+    <string name="adjCode">Item Number:</string>
+    <string name="adjDesc">Description:</string>
+    <string name="adjUOM">UOM:</string>
+    <string name="adjCurQty">Current Qty:</string>
+    <string name="adjQty">Adjustment Qty:</string>
+    <string name="adjReason">Reason:</string>
+    <string name="adjButton">Submit</string>
+    <string name="adjPendingRemoval">Pending Adj Qty (remove):</string>
 </resources>

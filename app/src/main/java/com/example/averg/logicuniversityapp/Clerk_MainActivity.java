@@ -57,6 +57,15 @@ public class Clerk_MainActivity extends Activity {
             }
         });
 
+        Button stocktakeMenuButton = findViewById(R.id.StockTakeMenuButton);
+        roSearchMenuButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ClerkAdjustmentInventoryActivity.class);
+                startActivity(i);
+            }
+        });
+
         // Logout button logs the user out
         Button logoutButton = findViewById(R.id.LogoutMenuButton);
         logoutButton.setOnClickListener(new View.OnClickListener(){
