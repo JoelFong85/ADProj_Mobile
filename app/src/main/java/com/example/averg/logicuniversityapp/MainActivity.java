@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
 
         final Button clerkButton = findViewById(R.id.ClerkButton);
         final Button employeeButton = findViewById(R.id.EmployeeButton);
-        final Button debugButton = findViewById(R.id.debugButton);
 
         clerkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,14 +54,6 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), User_MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-        debugButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), DebugActivity.class);
                 startActivity(i);
             }
         });

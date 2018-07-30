@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 
 import Adapters.InventoryAdapter;
+import Models.Adjustment;
 import Models.Inventory;
 import Utilities.Constants;
 import Utilities.JSONParser;
@@ -69,9 +70,25 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
         }
 
         else{
-            // Run the Async task
+            // Prepare models
+            // Item number
+            Intent intent = getIntent();
+            String itemNumber = intent.getStringExtra("itemNumber");
+
+            // Adjustment Quantity
+            EditText adjQuantityEditText = findViewById(R.id.adjustedQuantityEditText);
+            String adjustmentQuantity = adjQuantityEditText.getText().toString();
+
+            // Employee Remark
+            EditText remarkEditText = findViewById(R.id.reasonEditText);
+            String employeeRemark = remarkEditText.getText().toString();
+
+            Adjustment adj = new Adjustment(itemNumber, adjustmentQuantity, employeeRemark);
+
+            // Run the Async tasks
             new DeductFromInventoryTask(this).execute();
             new SpecialRequestUpdateTask(this).execute();
+            new CreateAdjustment(this).execute(adj);
         }
 
 
@@ -167,14 +184,17 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             JSONObject j = new JSONObject();
             try {
                 j.put("RequisitionId", requisitionId);
+                j.put("Description", "");
                 j.put("ItemNumber", itemNumber);
+                j.put("PendingQty", 0);
+                j.put("QuantityOrdered", 0);
+                j.put("UnitOfMeasurement", "");
                 j.put("CollectedQty", quantityCollected);
             }
             catch (Exception ex){
                 ex.printStackTrace();
             }
 
-            Log.i("Json", j.toString());
             // Sort collected goods
             // Deduct from inventory
             return JSONParser.postStream(Constants.SERVICE_HOST + "/WarehouseCollection/DeductInventory", j.toString());
@@ -207,7 +227,7 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             String itemNumber = itemCodeTextView.getText().toString();
 
             TextView quantityPreparedTextView = findViewById(R.id.collectQuantityEditText);
-            String quantityPrepared = quantityPreparedTextView.getText().toString();
+            int quantityPrepared = Integer.parseInt(quantityPreparedTextView.getText().toString());
 
             // Create a JSON to deliver the payload
             JSONObject j = new JSONObject();
@@ -215,6 +235,12 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
                 j.put("RequisitionId", requisitionId);
                 j.put("ItemNumber", itemNumber);
                 j.put("CollectedQty", quantityPrepared);
+
+                // Filler
+                j.put("Description", "");
+                j.put("PendingQty", 0);
+                j.put("QuantityOrdered", 0);
+                j.put("UnitOfMeasurement", "");
             }
             catch (Exception ex){
                 ex.printStackTrace();
@@ -232,5 +258,21 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             t.show();
         }
     }
+
+    private class CreateAdjustment extends AsyncTask<Adjustment, Void, String>{
+        private WeakReference<Activity> weakActivity;
+
+        public CreateAdjustment(Activity myactivity) {
+            this.weakActivity = new WeakReference<>(myactivity);
+        }
+
+        @Override
+        protected String doInBackground(Adjustment... params) {
+            Adjustment adj=params[0];
+            return Adjustment.CreateAdj(adj,Constants.TOKEN);
+        }
+    }
+
+
 }
 
