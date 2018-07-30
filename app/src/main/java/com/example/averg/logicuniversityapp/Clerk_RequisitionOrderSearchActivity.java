@@ -3,7 +3,9 @@ package com.example.averg.logicuniversityapp;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -51,7 +53,7 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity {
     }
 
     // Async task
-    private class RequisitionOrderSearchTask extends AsyncTask<String, Void, JSONArray> {
+    private class RequisitionOrderSearchTask extends AsyncTask<String, Void, JSONArray>{
 
         private final WeakReference<Activity> weakActivity;
 
@@ -68,8 +70,6 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity {
         @Override
         protected void onPostExecute(JSONArray result) {
             try {
-                // TextView requisitionTitle = findViewById(R.id.requisitionSearchTitle);
-                // requisitionTitle.setText(result.toString());
 
                 // Convert JSONArray into list items.
                 for (int i = 0; i < result.length(); i++) {
@@ -88,6 +88,17 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity {
                 ROLinkedListAdapter adapter = new ROLinkedListAdapter(weakActivity.get(), roList);
                 ListView listView = findViewById(R.id.requisitionOrderListView);
                 listView.setAdapter(adapter);
+
+                // Add listeners to each row on the listview.
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    }
+                });
+
+
+
 
 
             } catch (Exception ex) {

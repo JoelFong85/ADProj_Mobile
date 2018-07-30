@@ -79,15 +79,15 @@ public class Clerk_MainActivity extends Activity {
 
         @Override
         protected JSONObject doInBackground(String... strings) {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("pref", MODE_PRIVATE);
-            return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Logout/" + pref.getString("token", "Token retrieval failed"));
+            SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
+            return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Logout/" + pref.getString(Constants.PREFERENCE_TOKEN, "Token retrieval failed"));
         }
 
         @Override
         protected void onPostExecute(JSONObject result) {
             // Clear the token
-            SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("pref", getApplicationContext().MODE_PRIVATE).edit();
-            editor.remove("token");
+            SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, getApplicationContext().MODE_PRIVATE).edit();
+            editor.remove(Constants.PREFERENCE_TOKEN);
             editor.commit();
 
             Intent i = new Intent(getApplicationContext(), MainActivity.class);

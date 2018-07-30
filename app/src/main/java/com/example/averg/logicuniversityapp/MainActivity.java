@@ -90,8 +90,8 @@ public class MainActivity extends Activity {
                 t.show();
 
                 // Save token in SharedPreference
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("pref", MODE_PRIVATE);
-                pref.edit().putString("token", result.getString("Token"));
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
+                pref.edit().putString(Constants.PREFERENCE_TOKEN, result.getString("Token"));
                 pref.edit().commit();
 
 
