@@ -89,11 +89,8 @@ public class MainActivity extends Activity {
                 Toast t = Toast.makeText(getApplicationContext(), "Greetings, fellow human being with token " + printString, Toast.LENGTH_LONG);
                 t.show();
 
-                // Save token in SharedPreference
-                SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFERENCE_NAME, MODE_PRIVATE);
-                pref.edit().putString(Constants.PREFERENCE_TOKEN, result.getString("Token"));
-                pref.edit().commit();
-
+                // Save token in Constants
+                Constants.TOKEN = result.getString("Token");
 
                 // Redirect user to appropriate activity
                 String role = result.getString("Role");

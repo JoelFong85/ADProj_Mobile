@@ -31,9 +31,10 @@ public class InventoryAdapter extends ArrayAdapter<Inventory> {
         TextView column2 = convertView.findViewById(R.id.column2);
         TextView column3 = convertView.findViewById(R.id.column3);
         // Populate the data into the template view using the data object
-        column1.setText(inv.getCategory());
-        column2.setText(inv.getDescription());
-        column3.setText(String.valueOf(inv.getPriorityUnitPrice()));
+        column1.setText(inv.get("category"));
+        column2.setText(inv.get("description"));
+        // column3.setText(String.valueOf(inv.getPriorityUnitPrice()));
+        // column3.setText(inv.get(""));
 
         // Return the completed view to render on screen
         return convertView;

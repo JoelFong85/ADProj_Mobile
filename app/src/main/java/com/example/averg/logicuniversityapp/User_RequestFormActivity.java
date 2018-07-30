@@ -34,7 +34,7 @@ public class User_RequestFormActivity extends Activity{
         setContentView(R.layout.activity_user_request_form);
 
         // Fetch all inventory items
-        new InventoryTask(this).execute("", "", "");
+        // new InventoryTask(this).execute("", "", "");
 
         // Create a textWatcher
         TextWatcher textWatcher = new TextWatcher() {
@@ -83,7 +83,7 @@ public class User_RequestFormActivity extends Activity{
     private Boolean containsCategoryOrDescription(Inventory i){
         final TextView categoryEditText = findViewById(R.id.categoryEditText);
         final TextView descriptionEditText = findViewById(R.id.descriptionEditText);
-        if(i.getCategory().trim().toLowerCase().contains(categoryEditText.getText()) || i.getDescription().trim().toLowerCase().contains(descriptionEditText.getText())){
+        if(i.get("category").trim().toLowerCase().contains(categoryEditText.getText()) || i.get("description").trim().toLowerCase().contains(descriptionEditText.getText())){
             return true;
         }
 
@@ -92,9 +92,9 @@ public class User_RequestFormActivity extends Activity{
         }
     }
 
-
+/*
     private class InventoryTask extends AsyncTask<String, Void, JSONArray> {
-
+        /*
         private final WeakReference<Activity> weakActivity;
 
         InventoryTask(Activity myActivity) {
@@ -137,7 +137,8 @@ public class User_RequestFormActivity extends Activity{
             }
 
         }
-    }
 
+    }
+*/
 
 }

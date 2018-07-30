@@ -6,6 +6,7 @@ import android.media.tv.TvContract;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,7 +70,8 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
         else{
             // Run the Async task
-            new PrepareTask(this).execute();
+            new DeductFromInventoryTask(this).execute();
+            new SpecialRequestUpdateTask(this).execute();
         }
 
 
@@ -139,13 +141,13 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
 
 
-    //Async task for our lovely prepare button.
-    private class PrepareTask extends AsyncTask<String, Void, String> {
+    //Async task that deducts a number of items from the inventory.
+    private class DeductFromInventoryTask extends AsyncTask<String, Void, String> {
 
         private final WeakReference<Activity> weakActivity;
         private String requisitionQuantity;
 
-        PrepareTask(Activity myActivity) {
+        DeductFromInventoryTask(Activity myActivity) {
             this.weakActivity = new WeakReference<>(myActivity);
         }
 
@@ -154,22 +156,11 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             Intent intent = getIntent();
             String requisitionId = intent.getStringExtra("requisitionId");
 
-            TextView descriptionTextView = findViewById(R.id.details_Description);
             TextView itemCodeTextView = findViewById(R.id.details_ItemCode);
-            TextView qtyAvailableTextView = findViewById(R.id.details_QtyAvailable);
-            TextView qtyOrderedTextView = findViewById(R.id.details_QtyOrdered);
-            TextView uomTextView = findViewById(R.id.details_UOM);
             EditText quantityCollectedEditText = findViewById(R.id.collectQuantityEditText);
-            EditText quantityPendingEditText = findViewById(R.id.collectQuantityEditText);
-            //EditText quantityCollectedEditText = findViewById(R.id.collectQuantityEditText);
 
             String itemNumber = itemCodeTextView.getText().toString();
-            String description = descriptionTextView.getText().toString();
-            String unitOfMeasurement = uomTextView.getText().toString();
-            int quantityOrdered = Integer.parseInt(qtyOrderedTextView.getText().toString());
             int quantityCollected = Integer.parseInt(quantityCollectedEditText.getText().toString());
-            int quantityPending = Integer.parseInt(qtyOrderedTextView.getText().toString());
-            int quantityCurrent = Integer.parseInt(qtyOrderedTextView.getText().toString());
 
 
             // Create a JSON to deliver the payload
@@ -177,25 +168,68 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
             try {
                 j.put("RequisitionId", requisitionId);
                 j.put("ItemNumber", itemNumber);
-                j.put("Description", description);
-                j.put("UnitOfMeasurement", unitOfMeasurement);
-                j.put("QuantityOrdered", quantityOrdered);
                 j.put("CollectedQty", quantityCollected);
-                j.put("PendingQty", quantityPending);
-                j.put("CurrentInventoryQty", quantityCurrent);
-
             }
             catch (Exception ex){
                 ex.printStackTrace();
             }
 
+            Log.i("Json", j.toString());
             // Sort collected goods
             // Deduct from inventory
-            return JSONParser.postStream(Constants.SERVICE_HOST + "/WarehouseCollection/Sort", j.toString());
+            return JSONParser.postStream(Constants.SERVICE_HOST + "/WarehouseCollection/DeductInventory", j.toString());
         }
 
         @Override
         protected void onPostExecute(String result) {
+            // Show user feedback
+            Toast t = Toast.makeText(getApplicationContext(), "Item deducted from inventory!", Toast.LENGTH_LONG);
+            t.show();
+        }
+    }
+
+    //Async task that deducts a number of items from the inventory.
+    private class SpecialRequestUpdateTask extends AsyncTask<String, Void, String> {
+
+        private final WeakReference<Activity> weakActivity;
+        private String requisitionQuantity;
+
+        SpecialRequestUpdateTask(Activity myActivity) {
+            this.weakActivity = new WeakReference<>(myActivity);
+        }
+
+        protected String doInBackground(String... params) {
+            // Fetch the variables
+            Intent intent = getIntent();
+            String requisitionId = intent.getStringExtra("requisitionId");
+
+            TextView itemCodeTextView = findViewById(R.id.details_ItemCode);
+            String itemNumber = itemCodeTextView.getText().toString();
+
+            TextView quantityPreparedTextView = findViewById(R.id.collectQuantityEditText);
+            String quantityPrepared = quantityPreparedTextView.getText().toString();
+
+            // Create a JSON to deliver the payload
+            JSONObject j = new JSONObject();
+            try {
+                j.put("RequisitionId", requisitionId);
+                j.put("ItemNumber", itemNumber);
+                j.put("CollectedQty", quantityPrepared);
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+
+            Log.i("Json", j.toString());
+
+            return JSONParser.postStream(Constants.SERVICE_HOST + "/SpecialRequest/Sorting/UpdateROD", j.toString());
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Show user feedback
+            Toast t = Toast.makeText(getApplicationContext(), "Requisition Order updated!", Toast.LENGTH_LONG);
+            t.show();
         }
     }
 }
