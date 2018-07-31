@@ -2,13 +2,12 @@ package com.example.averg.logicuniversityapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-public class Clerk_ItemDetailsActivity extends Activity {
+public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_clerk__weekly_collection_list_detail);
     }
 }

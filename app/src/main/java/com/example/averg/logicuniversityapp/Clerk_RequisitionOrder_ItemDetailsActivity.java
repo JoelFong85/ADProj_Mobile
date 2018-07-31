@@ -25,7 +25,11 @@ import Models.Inventory;
 import Utilities.Constants;
 import Utilities.JSONParser;
 
-public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class Clerk_RequisitionOrder_ItemDetailsActivity extends Activity implements View.OnClickListener {
+
+    private boolean readyTask1 = false;
+    private boolean readyTask2 = false;
+    private boolean readyTask3 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +89,53 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
             Adjustment adj = new Adjustment(itemNumber, adjustmentQuantity, employeeRemark);
 
-            // Run the Async tasks
-            new DeductFromInventoryTask(this).execute();
-            new SpecialRequestUpdateTask(this).execute();
-            new CreateAdjustment(Clerk_RequisitionOrder_ItemDetailsActivity.this).execute(adj);
+            // Disable the prepare button.
+            view.setEnabled(false);
+
+            // Run a chain of tasks.
+
+            DeductFromInventoryTask task1 = new DeductFromInventoryTask(this);
+            SpecialRequestUpdateTask task2 = new SpecialRequestUpdateTask(this);
+            CreateAdjustment task3 = new CreateAdjustment(Clerk_RequisitionOrder_ItemDetailsActivity.this);
+
+            task1.execute();
+            task2.execute();
+            task3.execute(adj);
+
+            FinisherTask finisher = new FinisherTask(itemNumber);
+            finisher.execute();
         }
 
 
+    }
+
+    // Checks whether the asynctask are complete or not
+    private class FinisherTask extends AsyncTask<String, Void, Void> {
+
+        String itemNumber;
+
+        FinisherTask(String s){
+            itemNumber = s;
+        }
+
+        protected Void doInBackground(String... params) {
+            while(readyTask1 != true || readyTask2 != true || readyTask3 != true);
+            try {
+                Thread.sleep(250);
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            Intent i = getIntent();
+            i.putExtra("itemNumber", itemNumber);
+            setResult(RESULT_OK, i);
+            finish();
+        }
     }
 
     // Loads the information on the item details page.
@@ -203,9 +247,7 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
         @Override
         protected void onPostExecute(String result) {
-            // Show user feedback
-            Toast t = Toast.makeText(getApplicationContext(), "Item deducted from inventory!", Toast.LENGTH_LONG);
-            t.show();
+            readyTask1 = true;
         }
     }
 
@@ -254,9 +296,7 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
 
         @Override
         protected void onPostExecute(String result) {
-            // Show user feedback
-            Toast t = Toast.makeText(getApplicationContext(), "Requisition Order updated!", Toast.LENGTH_LONG);
-            t.show();
+            readyTask2 = true;
         }
     }
 
@@ -270,7 +310,13 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
         @Override
         protected String doInBackground(Adjustment... params) {
             Adjustment adj=params[0];
-            return Adjustment.CreateAdj(adj);
+            Adjustment.CreateAdj(adj);
+            return "done";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            readyTask3 = true;
         }
     }
 

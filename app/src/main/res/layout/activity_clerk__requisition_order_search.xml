@@ -36,26 +36,100 @@
     <ListView
         android:id="@+id/requisitionOrderListView"
         android:layout_width="370dp"
-        android:layout_height="279dp"
+        android:layout_height="162dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/selectedDateEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/readyForCollectionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="99dp"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="40dp"
+        android:enabled="false"
         android:text="Ready for Collection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="22dp"
+        android:text="Item Name"
+        app:layout_constraintBottom_toTopOf="@+id/requisitionOrderListView"
+        app:layout_constraintEnd_toStartOf="@+id/textView29"
+        app:layout_constraintStart_toEndOf="@+id/textView28"
+        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="22dp"
+        android:text="Item Code"
+        app:layout_constraintBottom_toTopOf="@+id/requisitionOrderListView"
+        app:layout_constraintEnd_toStartOf="@+id/textView27"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderListView" />
+        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:text="Request Quantity"
+        app:layout_constraintBottom_toTopOf="@+id/requisitionOrderListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="All items must be prepared before it can be ready for collection"
+        android:textColor="#555555"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/selectedDateEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/readyForCollectionButton"
+        app:layout_constraintEnd_toStartOf="@+id/selectDateButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/selectDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_marginBottom="15dp"
+        android:text="Select Date"
+        app:layout_constraintBottom_toTopOf="@+id/readyForCollectionButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/selectedDateEditText" />
+
 </android.support.constraint.ConstraintLayout>
