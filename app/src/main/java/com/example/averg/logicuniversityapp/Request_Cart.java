@@ -120,6 +120,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
                     Intent i = new Intent(getApplicationContext(), RequestConfirm.class);
                     i.putExtra("orderid", result.replace("\"", ""));
                     startActivity(i);
+                    finish();
                 }
             }.execute();
         }

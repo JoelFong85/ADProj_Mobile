@@ -208,8 +208,6 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
 
                         @Override
                         protected void onPostExecute(Void param) {
-                            Toast t = Toast.makeText(getApplicationContext(), "Acknowledged", Toast.LENGTH_SHORT);
-                            t.show();
                         }
                     }.execute(lv.getAdapter().getItem(i),collect_id );
                 }
@@ -229,6 +227,7 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
                         t.show();
                         Intent i = new Intent(getApplicationContext(), DisbursementList.class);
                         startActivity(i);
+                        finish();
                     }
 
                     else {
