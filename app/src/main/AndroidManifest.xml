@@ -30,16 +30,24 @@
         <activity android:name=".DebugActivity" />
         <activity android:name=".Clerk_RequisitionOrder_ItemDetailsActivity" />
         <activity android:name=".ClerkAdjustmentInventoryActivity" />
-        <activity android:name=".ClerkAdjustmentForm"></activity>
+        <activity android:name=".ClerkAdjustmentForm" />
         <activity android:name=".Request_Cart" />
         <activity android:name=".NewRequestActivity" />
         <activity android:name=".RequestConfirm" />
         <activity android:name=".DisbursementList" />
-        <activity android:name=".AcknowledgeDisbursement"></activity>
+        <activity android:name=".AcknowledgeDisbursement" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".Budget" />
+        <activity android:name=".ChangeCollectionpoint" />
+        <activity android:name=".Departmenthead" />
+        <activity android:name=".DepartmentRep" />
+        <activity android:name=".pendingrequests" />
+        <activity android:name=".RequisitionDetail" />
+        <activity android:name=".ViewCollectionhistory"></activity>
     </application>
 
 </manifest>
