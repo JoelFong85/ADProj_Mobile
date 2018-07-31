@@ -274,6 +274,5 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends AppCompatActivit
         }
     }
 
-
 }
 

@@ -109,4 +109,75 @@ public class Inventory extends HashMap<String, String> {
         }
         return(item);
     }
+
+    //Tharrani Start
+
+    private static List<Inventory> inventoryList = new ArrayList<Inventory>();
+
+    public static List<Inventory> getInventoryList() {
+        return inventoryList;
+    }
+
+    public  Inventory(String item, String desc, String category, String UOM, String cq, String reol, String req, String bin, String status)
+    {
+        put("item_number", item);
+        put("description",desc);
+        put("category", category);
+        put("unit_of_measurement", UOM);
+        put("current_quantity", cq);
+        put("reorder_level", reol);
+        put("reorder_quantity", req);
+        put("item_bin", bin);
+        put("item_status", status);
+    }
+    public Inventory(String item, String desc, String category,String UOM )
+    {
+        put("item_number", item );
+        put("description",desc);
+        put("category", category);
+        put("unit_of_measurement", UOM);
+    }
+
+    public static List<Inventory> list()
+    {
+        List<Inventory> list = new ArrayList<Inventory>();
+        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + "/NewRequest/AllItems/" + Constants.TOKEN);
+        try {
+            for (int i =0; i<a.length(); i++) {
+                JSONObject b = a.getJSONObject(i);
+                list.add(new Inventory(b.getString("item_number"), b.getString("description"),b.getString("category"),b.getString("unit_of_measurement")));
+            }
+        } catch (Exception e) {
+            Log.e("Inventory.list()", "JSONArray error");
+        }
+        inventoryList = list;
+        return list;
+    }
+
+    public static Inventory getinventory(String id)
+    {
+        JSONObject a = JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/NewRequest/Items/" + id + "/"+Constants.TOKEN );
+        try {
+            return new Inventory(a.getString("item_number"), a.getString("description"), a.getString("category"), a.getString("unit_of_measurement"));
+        }
+        catch (Exception e) {
+            Log.e("iventory.getinventory()", "JSONArray error");
+        }
+        return(null);
+    }
+
+    public static List<Inventory> getsearchlist(String s)
+    {
+        List<Inventory> searchlist = new ArrayList<Inventory>();
+        for(int i=0; i<inventoryList.size();i++)
+        {
+            if(getInventoryList().get(i).get("description").toLowerCase().contains(s.toLowerCase()))
+            {
+                searchlist.add(getInventoryList().get(i));
+            }
+        }
+        return searchlist;
+    }
+
+    //Tharrani End
 }

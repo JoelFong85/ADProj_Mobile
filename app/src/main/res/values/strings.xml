@@ -9,4 +9,10 @@
     <string name="adjReason">Reason:</string>
     <string name="adjButton">Submit</string>
     <string name="adjPendingRemoval">Pending Adj Qty (remove):</string>
+    <!--Tharrani Start-->
+    <string name="Searchhint">Search by description</string>
+    <string name="Search">Description</string>
+    <string name="item1_value">Logout</string>
+    <string name="customdialogtitle">Edit Cart Item</string>
+    <!--Tharrani End-->
 </resources>

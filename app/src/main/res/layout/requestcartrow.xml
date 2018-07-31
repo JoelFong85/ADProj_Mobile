@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textViewdesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+        android:textSize="18sp"
+        android:textColor="@android:color/background_dark"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewquan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+        android:textColor="?android:attr/colorActivatedHighlight"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
+
+    <TextView
+        android:id="@+id/textViewUOM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+
+        android:layout_below="@+id/textViewdesc"
+        android:layout_marginStart="131dp"
+        android:text="TextView"
+        android:textColor="?android:attr/colorActivatedHighlight" />
+
+    <!--<Button-->
+            <!--android:id="@+id/buttonedit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:background="@android:color/holo_orange_light"-->
+            <!--android:text="Edit"-->
+            <!--android:focusable="false"-->
+            <!--android:textColor="@android:color/background_dark" />-->
+</RelativeLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
