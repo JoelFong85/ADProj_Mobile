@@ -31,6 +31,7 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
         final EditText collectQty = (EditText) findViewById(R.id.editText_ColItem_collectQty1);
         final TextView orderQty = (TextView) findViewById(R.id.textView_ColItem_orderQty1);
 
+        final TextView pendingAdjRemoveQty = (TextView) findViewById(R.id.textView_ColItem_pendingAdjRemove1);
         final EditText reason = (EditText) findViewById(R.id.editText_reason);
         final EditText adjQty = (EditText) findViewById(R.id.editText_ColItem_adjQty1);
         adjQty.setText("0");
@@ -54,6 +55,8 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
         btnPrep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Validating Collection Qty
                 try {
                     int num = Integer.parseInt(collectQty.getText().toString());
                     int num1 = Integer.parseInt(adjQty.getText().toString());
@@ -67,22 +70,32 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
                 int availableQty = Integer.parseInt(availQty.getText().toString());
                 int orderedQty = Integer.parseInt(orderQty.getText().toString());
                 int collectedQty = Integer.parseInt(collectQty.getText().toString());
-                int adjustedQty = 0;
 
-                if (collectedQty < 0){
+
+                //prevent -ve collection
+                if (collectedQty < 0) {
                     Toast.makeText(Clerk_WeeklyCollectionListDetailActivity.this, getString(R.string.notZero), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (!(adjQty.getText().toString()).matches("")) {
-                    adjustedQty = Integer.parseInt(adjQty.getText().toString());
-                }
-
+                //checking collected qty is less than ordered or what is available in inventory
                 if (collectedQty > orderedQty || collectedQty > availableQty) {
                     Toast.makeText(Clerk_WeeklyCollectionListDetailActivity.this, getString(R.string.collectQtyTooBig), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                int adjustedQty = 0;
+                //checking if adjust qty is null or "". then adj qty = 0
+                if ((adjQty.getText().toString()).matches("")) {
+                    adjustedQty = 0; //Integer.parseInt(adjQty.getText().toString());
+                } else {
+                    adjustedQty = Integer.parseInt(adjQty.getText().toString()); //otherwise adj qty = what is in edittext
+                }
+
+                EditText etAdjReason = (EditText) findViewById(R.id.editText_reason);
+                String inputAdjReason = etAdjReason.getText().toString();
+
+                //validate adj qty + collected qty is available in inventory
                 if (adjustedQty < (collectedQty - availableQty)) {
                     Toast.makeText(Clerk_WeeklyCollectionListDetailActivity.this, getString(R.string.adjQtyTooBig), Toast.LENGTH_SHORT).show();
                     return;
@@ -97,11 +110,28 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
 
                 CollectionItem ci = new CollectionItem(ci_descrip, ci_itemNumber, ci_uom, ci_currentQty, ci_collectQty, ci_orderQty);
 
+                Adjustment adj = new Adjustment(ci_itemNumber, Integer.toString(adjustedQty), inputAdjReason);
+
+
+                new AsyncTask<Adjustment, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Adjustment... params) {
+                        Adjustment.CreateAdj(params[0]);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                }.execute(adj);
+
                 new AsyncTask<CollectionItem, Void, Void>() {
                     @Override
                     protected Void doInBackground(CollectionItem... params) {
                         CollectionItem.updateCollectionItem(params[0]);
-                        // ADD IN CREATE ADJUSTMENT FORM METHOD HERE. TAKE FROM ESTHER
                         return null;
                     }
 
@@ -154,12 +184,15 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
                 } else {
                     collectQty.setText(result.get("QuantityOrdered"));
                 }
+
+                TextView pendingAdjRemove = (TextView) findViewById(R.id.textView_ColItem_pendingAdjRemove1);
+                pendingAdjRemove.setText(result.get("pending_adj_remove"));
             }
         };
         task.execute(description);
     }
 
-//    private class CreateAdjustment extends AsyncTask<Adjustment, Void, String>{
+//    private class CreateAdjustment extends AsyncTask<Adjustment, Void, String> {
 //        private WeakReference<Activity> weakActivity;
 //
 //        public CreateAdjustment(Activity myactivity) {
@@ -168,14 +201,24 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
 //
 //        @Override
 //        protected String doInBackground(Adjustment... params) {
-//            Adjustment adj=params[0];
+//            Adjustment adj = params[0];
 //            return Adjustment.CreateAdj(adj);
 //        }
 //
 //        @Override
 //        protected void onPostExecute(String s) {
-//            showAToast(s);
+//            //showAToast(s);
 //        }
 //    }
 }
 
+
+//
+//                TextView tvPendingAdjRemoveQty = (TextView) findViewById(R.id.textView_ColItem_pendingAdjRemove1);
+//                int PendingAdjRemoveQty = Integer.parseInt(tvPendingAdjRemoveQty.getText().toString());
+//
+//
+//                if (inputAdjQty > (PendingAdjRemoveQty + availableQty)) {
+//                    Toast.makeText(Clerk_WeeklyCollectionListDetailActivity.this, getString(R.string.adjQtyTooBig), Toast.LENGTH_SHORT).show();
+//                    return;
+//                }

@@ -16,6 +16,7 @@ public class CollectionItem extends HashMap<String, String> {
 
     //final static String ipAdd = "http://172.23.200.89/LogicUniversity/Services/androidService.svc/";
     final private static String getCollectionListURL = "/WarehouseCollection/List";
+    final private static String getPendingAdjRemovalURL = "/Inventory/ItemCode/";
     final private static String sortCollectedGoodsURL = "/WarehouseCollection/Sort";
     final private static String deductFromInventoryURL = "/WarehouseCollection/DeductInventory";
 
@@ -34,6 +35,16 @@ public class CollectionItem extends HashMap<String, String> {
     }
 
     // For Collection List
+    public CollectionItem(String description, String itemNumber, String unitOfMeasurement, String currentInventoryQty, String collectedQty, String quantityOrdered, String pending_adj_remove) {
+        put("Description", description);
+        put("ItemNumber", itemNumber);
+        put("UnitOfMeasurement", unitOfMeasurement);
+        put("CurrentInventoryQty", currentInventoryQty);
+        put("CollectedQty", collectedQty);
+        put("QuantityOrdered", quantityOrdered);
+        put("pending_adj_remove", pending_adj_remove);
+    }
+
     public CollectionItem(String description, String itemNumber, String unitOfMeasurement, String currentInventoryQty, String collectedQty, String quantityOrdered) {
         put("Description", description);
         put("ItemNumber", itemNumber);
@@ -82,7 +93,11 @@ public class CollectionItem extends HashMap<String, String> {
                 String des = o.getString("Description");
 
                 if (des.equals(description)) {
-                    ci = new CollectionItem(o.getString("Description"), o.getString("ItemNumber"), o.getString("UnitOfMeasurement"), o.getString("CurrentInventoryQty"), o.getString("CollectedQty"), o.getString("QuantityOrdered"));
+                    String itemcode = o.getString("ItemNumber").trim();
+                    JSONObject ob = JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + getPendingAdjRemovalURL + itemcode + "/" + Constants.TOKEN);
+
+
+                    ci = new CollectionItem(o.getString("Description"), o.getString("ItemNumber"), o.getString("UnitOfMeasurement"), o.getString("CurrentInventoryQty"), o.getString("CollectedQty"), o.getString("QuantityOrdered"), ob.getString("pending_adj_remove"));
                     return ci;
                 }
             }
@@ -125,13 +140,13 @@ public class CollectionItem extends HashMap<String, String> {
             encodedUrl = selectedDptName.replace(" ", "%20");
         }
 
-        String fullURL = Constants.SERVICE_HOST + getSortingListByDepartmentURL + encodedUrl  + "/" + Constants.TOKEN;
-        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + getSortingListByDepartmentURL + encodedUrl  + "/" + Constants.TOKEN);
+        String fullURL = Constants.SERVICE_HOST + getSortingListByDepartmentURL + encodedUrl + "/" + Constants.TOKEN;
+        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + getSortingListByDepartmentURL + encodedUrl + "/" + Constants.TOKEN);
 
         try {
             for (int i = 0; i < a.length(); i++) {
                 JSONObject o = a.getJSONObject(i);
-                if (Integer.parseInt(o.getString("CollectedQty"))>0){
+                if (Integer.parseInt(o.getString("CollectedQty")) > 0) {
 
                     String itemNum = o.getString("ItemNumber");
                     String description = o.getString("Description");
