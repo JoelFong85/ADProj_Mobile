@@ -102,6 +102,10 @@ public class ClerkAdjustmentForm extends Activity {
 
         @Override
         protected void onPostExecute(String s) {
+            String message = s;
+            if(message.isEmpty()){
+                s=ItemNumber.trim()+" adj request submitted";
+            }
             showAToast(s);
         }
     }
