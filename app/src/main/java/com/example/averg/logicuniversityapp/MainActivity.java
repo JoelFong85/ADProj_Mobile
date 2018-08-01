@@ -56,9 +56,6 @@ public class MainActivity extends Activity {
         protected void onPostExecute(JSONObject result) {
             try {
                 // Login is successful
-                String printString = result.getString("Token");
-                Toast t = Toast.makeText(getApplicationContext(), "Greetings, fellow human being with token " + printString, Toast.LENGTH_LONG);
-                t.show();
 
                 // Save token in Constants
                 Constants.TOKEN = result.getString("Token");
