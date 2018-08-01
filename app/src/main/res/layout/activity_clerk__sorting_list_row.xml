@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:stretchColumns="1">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView_SortingListItemNum1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.4"
+                android:text="Item Number"
+                android:textColor="#808080"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView_SortingListItemNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView_SortingListDescription1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.4"
+                android:text="Description"
+                android:textColor="#808080"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView_SortingListDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView_SortingListOrderQty1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.4"
+                android:text="Qty Ordered"
+                android:textColor="#808080"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView_SortingListOrderQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView_SortingListCollectQty1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.4"
+                android:text="Qty Collected"
+                android:textColor="#808080"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView_SortingListCollectQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

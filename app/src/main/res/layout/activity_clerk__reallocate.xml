@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Clerk_ReallocateActivity">
+
+    <TextView
+        android:id="@+id/textView_ReallocateListTitle"
+        android:layout_width="382dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="8dp"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_ReallocateListDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_ReallocateListDescription"
+        android:layout_width="382dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_ReallocateListTotalCollectQty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ReallocateListTitle" />
+
+    <TextView
+        android:id="@+id/textView_ReallocateListTotalCollectQty1"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="16dp"
+        android:text="Total Qty Collected"
+        android:textColor="#000000 "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/listView_ReallocateList"
+        app:layout_constraintEnd_toStartOf="@+id/textView_ReallocateListTotalCollectQty"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ReallocateListDescription"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView_ReallocateListTotalCollectQty"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#120cbd "
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/listView_ReallocateList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ReallocateListDescription" />
+
+    <ListView
+        android:id="@+id/listView_ReallocateList"
+        android:layout_width="match_parent"
+        android:layout_height="377dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ReallocateListTotalCollectQty" />
+
+    <Button
+        android:id="@+id/button_Reallocate"
+        android:layout_width="183dp"
+        android:layout_height="52dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="33dp"
+        android:text="Reallocate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView_ReallocateList" />
+
+</android.support.constraint.ConstraintLayout>

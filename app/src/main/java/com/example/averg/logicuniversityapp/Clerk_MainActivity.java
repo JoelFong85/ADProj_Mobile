@@ -53,7 +53,7 @@ public class Clerk_MainActivity extends Activity {
         ordersByDeptLinkButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Clerk_OrdersByDept_Activity.class);
+                Intent i = new Intent(getApplicationContext(), Clerk_SortingActivity.class);
                 startActivity(i);
             }
         });

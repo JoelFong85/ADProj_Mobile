@@ -47,7 +47,11 @@
         <activity android:name=".DepartmentRep" />
         <activity android:name=".pendingrequests" />
         <activity android:name=".RequisitionDetail" />
-        <activity android:name=".ViewCollectionhistory"></activity>
+        <activity android:name=".ViewCollectionhistory" />
+        <activity android:name=".Clerk_WeeklyCollectionListDetailActivity" />
+        <activity android:name=".Clerk_SortingActivity" />
+        <activity android:name=".Clerk_SortingListActivity" />
+        <activity android:name=".Clerk_ReallocateActivity"></activity>
     </application>
 
 </manifest>
