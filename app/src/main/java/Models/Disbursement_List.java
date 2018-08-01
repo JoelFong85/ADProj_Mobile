@@ -50,6 +50,7 @@ public class Disbursement_List extends HashMap<String, String> {
 
     public static List<Disbursement_List> listall()
     {
+        clearlist();
         JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + "/Disbursement/Alllist/" + Constants.TOKEN);
         try {
             for (int i =0; i<a.length(); i++) {
