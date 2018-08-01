@@ -74,7 +74,7 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
                     @Override
                     protected void onPostExecute(Inventory result) {
                         reqcart.additemtocart(result);
-                        Toast.makeText(getApplicationContext(), "Item " + select_id + " added to request cart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Item added", Toast.LENGTH_SHORT).show();
                     }
                 }.execute(select_id);
             }
