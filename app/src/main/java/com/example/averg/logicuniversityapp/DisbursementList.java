@@ -149,8 +149,4 @@ public class DisbursementList extends Activity implements AdapterView.OnItemClic
             }
         }
     };
-
-
-
-
 }

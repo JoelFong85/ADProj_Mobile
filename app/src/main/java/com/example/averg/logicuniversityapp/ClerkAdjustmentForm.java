@@ -46,7 +46,11 @@ public class ClerkAdjustmentForm extends Activity {
                 if (!qty.isEmpty() && !qty.equals("null") && qty != null && qty.trim() != "") {
                     Integer adjqty = Integer.parseInt(qty);
                     if (adjqty < 0 && Math.abs(adjqty) > (pendingadjqty + currentqty)) {
-                        showAToast("Enter between" + -(pendingadjqty + currentqty) + " to " + currentqty);
+                        if(currentqty==0){
+                            showAToast("Current qty is 0. No removal request allowed.");
+                        }else{
+                            showAToast("Adj qty cannot be less than" + -(pendingadjqty + currentqty));
+                        }
                     } else if (adjqty != 0) {
                         try {
                             Adjustment adj = new Adjustment(ItemNumber, qty, reason);
@@ -98,6 +102,10 @@ public class ClerkAdjustmentForm extends Activity {
 
         @Override
         protected void onPostExecute(String s) {
+            String message = s;
+            if(message.isEmpty()){
+                s=ItemNumber.trim()+" adj request submitted";
+            }
             showAToast(s);
         }
     }
