@@ -4,11 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     tools:context=".Budget">
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Month Budget Overview"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/background_light"
         android:stretchColumns="1">
 
         <TableRow
@@ -64,13 +77,15 @@
                 android:textColor="@android:color/background_dark" />
 
         </TableRow>
-        <TableRow android:layout_width="match_parent"
+
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart1"
                 android:layout_width="300sp"
-                android:layout_height="300sp"
-                android:id="@+id/piechart1">
-            </com.github.mikephil.charting.charts.PieChart>
+                android:layout_height="300sp"></com.github.mikephil.charting.charts.PieChart>
 
         </TableRow>
     </TableLayout>

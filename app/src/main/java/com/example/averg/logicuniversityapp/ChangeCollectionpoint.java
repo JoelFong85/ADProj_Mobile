@@ -17,7 +17,7 @@ import java.util.List;
 import Models.collectionpoint;
 
 public class ChangeCollectionpoint extends Activity{
-
+    Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +44,12 @@ public class ChangeCollectionpoint extends Activity{
                 dropdown.setAdapter(adapter);
             }
         }.execute();
-        Button b=(Button)findViewById(R.id.button3);
+        b=(Button)findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                b.setEnabled(false);
+                b.setText("Please Wait...");
                 Spinner s1=(Spinner)findViewById(R.id.spinner4);
                 int i=s1.getSelectedItemPosition();
                 String id1=collectionpoint.Values[i];
@@ -67,6 +69,8 @@ public class ChangeCollectionpoint extends Activity{
                     }
                     @Override
                     protected void onPostExecute(Void result) {
+                        Intent i = new Intent(getApplicationContext(), DepartmentRep.class);
+                        startActivity(i);
                         Toast.makeText(ChangeCollectionpoint.this,"Location is Changed",Toast.LENGTH_SHORT).show();
                     }
                 }.execute(c1);

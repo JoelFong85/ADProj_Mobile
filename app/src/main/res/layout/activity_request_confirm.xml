@@ -7,24 +7,23 @@
     tools:context=".RequestConfirm">
 
     <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewtitle"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Request Details"
             android:textColor="@android:color/background_dark"
-            android:textSize="20sp"
-            android:textStyle="bold|italic"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/textViewid_label"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="16dp" />
@@ -32,12 +31,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/textViewid_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="Requisition Number"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginStart="44dp"
+                android:layout_marginTop="15dp"
                 android:text="TextView"
                 android:textColor="@android:color/holo_green_dark"
                 app:layout_constraintBottom_toTopOf="@+id/textViewdate"
@@ -118,8 +120,9 @@
             android:id="@+id/listviewconfirm"
             android:layout_width="387dp"
             android:layout_height="450dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewstatus_label"/>
+            app:layout_constraintTop_toBottomOf="@id/textViewstatus_label" />
 
         <Button
             android:id="@+id/buttonaddnewrequest"

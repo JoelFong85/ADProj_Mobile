@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Requisition Order Details"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:background="@android:color/background_light"
+        android:stretchColumns="1"
+        android:layout_marginTop="10dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -20,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Requisition id" />
+                android:text="Requisition id"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -30,7 +45,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@android:color/background_dark" />
         </TableRow>
 
 
@@ -46,7 +62,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -57,7 +75,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@android:color/background_dark" />
         </TableRow>
 
         <TableRow
@@ -73,7 +92,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Requisition Date" />
+                android:text="Requisition Date"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -83,7 +104,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@android:color/background_dark" />
         </TableRow>
 
         <TableRow
@@ -99,7 +121,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Status" />
+                android:text="Status"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -109,7 +133,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@android:color/background_dark" />
         </TableRow>
 
         <TableRow
@@ -125,7 +150,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Price($)" />
+                android:text="Price($)"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView15"
@@ -135,7 +162,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@android:color/background_dark" />
         </TableRow>
 
         <TableRow
@@ -150,7 +178,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Comments" />
+                android:text="Comments"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editText"
@@ -178,7 +208,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@android:color/holo_green_light"
-                android:text="Approve" />
+                android:text="Approve"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -195,7 +226,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@android:color/holo_red_light"
-                android:text="Reject" />
+                android:text="Reject"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
@@ -206,7 +238,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Order Details"
+                android:text="Order Item Details"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="24sp" />
 
@@ -217,9 +249,10 @@
             android:layout_height="match_parent">
 
             <ListView
+                android:id="@+id/listView3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/listView3"/>
+                android:layout_marginTop="10dp" />
 
         </TableRow>
     </TableLayout>
