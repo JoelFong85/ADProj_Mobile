@@ -10,10 +10,11 @@
     <TextView
         android:id="@+id/requisitionSearchTitle"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="#98c442"
         android:gravity="center"
-        android:paddingLeft="5dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
         android:text="Search By Requisition Order"
         android:textColor="@android:color/white"
         android:textSize="24sp"
