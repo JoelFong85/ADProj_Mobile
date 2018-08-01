@@ -105,13 +105,15 @@
 
     <Button
         android:id="@+id/details_prepareButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="46dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
+        android:background="@android:color/holo_green_dark"
         android:text="Prepare"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

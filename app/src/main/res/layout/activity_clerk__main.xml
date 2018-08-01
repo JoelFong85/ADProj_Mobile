@@ -11,10 +11,10 @@
         android:id="@+id/requisitionOrderSearchMenuButton"
         android:layout_width="138dp"
         android:layout_height="135dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
         android:drawableTop="@android:drawable/ic_menu_search"
         android:text="Search by Requisition Order"
+        app:layout_constraintBottom_toTopOf="@+id/OrderByDeptLinkButton"
+        app:layout_constraintEnd_toStartOf="@+id/WeeklyCollectionListMenuButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,21 +22,21 @@
         android:id="@+id/WeeklyCollectionListMenuButton"
         android:layout_width="144dp"
         android:layout_height="135dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="28dp"
         android:drawableTop="@android:drawable/ic_menu_view"
         android:text="View Weekly Collection List"
+        app:layout_constraintBottom_toTopOf="@+id/DisbursementLocaMenuButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/requisitionOrderSearchMenuButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/OrderByDeptLinkButton"
         android:layout_width="144dp"
         android:layout_height="135dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
         android:drawableTop="@android:drawable/ic_menu_sort_alphabetically"
         android:text="Orders by Department"
+        app:layout_constraintBottom_toTopOf="@+id/StockTakeMenuButton"
+        app:layout_constraintEnd_toStartOf="@+id/DisbursementLocaMenuButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchMenuButton" />
 
@@ -44,21 +44,21 @@
         android:id="@+id/DisbursementLocaMenuButton"
         android:layout_width="144dp"
         android:layout_height="135dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="28dp"
         android:drawableTop="@android:drawable/ic_menu_mylocation"
         android:text="Disbursement Locations"
+        app:layout_constraintBottom_toTopOf="@+id/LogoutMenuButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/OrderByDeptLinkButton"
         app:layout_constraintTop_toBottomOf="@+id/WeeklyCollectionListMenuButton" />
 
     <Button
         android:id="@+id/StockTakeMenuButton"
         android:layout_width="144dp"
         android:layout_height="135dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
         android:drawableTop="@android:drawable/ic_menu_sort_by_size"
         android:text="Stock Take"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/LogoutMenuButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OrderByDeptLinkButton" />
 
@@ -66,10 +66,10 @@
         android:id="@+id/LogoutMenuButton"
         android:layout_width="144dp"
         android:layout_height="135dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="28dp"
         android:drawableTop="@android:drawable/ic_menu_revert"
         android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/StockTakeMenuButton"
         app:layout_constraintTop_toBottomOf="@+id/DisbursementLocaMenuButton" />
 </android.support.constraint.ConstraintLayout>
