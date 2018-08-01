@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
                 loginButton.setEnabled(true);
                 loginButton.setText("Login");
                 // Login is successful
-                String printString = result.getString("Token");
 
                 // Save token in Constants
                 Constants.TOKEN = result.getString("Token");
