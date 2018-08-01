@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ import Utilities.JSONParser;
 
 public class Clerk_RequisitionOrderSearchActivity extends Activity{
 
-    public ArrayList<RequisitionOrder> roList = new ArrayList<>();
+    public ArrayList<RequisitionOrder> roList;
 
     public static final int PREPARE_COMPLETE = 0;
 
@@ -91,34 +92,16 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity{
                 }
             }
             if (toDelete != null) {
-                Log.i("yes: ","Removing item!");
+                Log.i("yes: ","Removing item: " + toDelete.getItemNumber() + "!");
                 roList.remove(toDelete);
             }
 
-            ListView lv = findViewById(R.id.requisitionOrderListView);
-
-            // Reattach adapter
-            ROLinkedListAdapter adapter = new ROLinkedListAdapter(this, roList);
-            ListView listView = findViewById(R.id.requisitionOrderListView);
-            listView.setAdapter(adapter);
-
-            // Add listeners to each row on the listview
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
-
-                    // Start a new activity when a row is clicked on
-                    RequisitionOrder ro = (RequisitionOrder) adapter.getItemAtPosition(position);
-                    Intent i = new Intent(getApplicationContext(), Clerk_RequisitionOrder_ItemDetailsActivity.class);
-                    i.putExtra("requisitionId", ro.getRequisitionId());
-                    i.putExtra("itemNumber", ro.getItemNumber());
-                    i.putExtra("quantityOrdered", ro.getItemRequisitionQuantity());
-
-                    startActivityForResult(i, PREPARE_COMPLETE);
-                }
-            });
+            // Reload adapter.
+            reloadAdapter();
 
             // Check if listview is empty, if it is, enable to ready for collection button
+            ListView lv = findViewById(R.id.requisitionOrderListView);
+            ListAdapter adapter = lv.getAdapter();
             if(adapter.getCount() == 0){
                 Button b = findViewById(R.id.readyForCollectionButton);
                 b.setEnabled(true);
@@ -148,10 +131,15 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity{
         @Override
         protected void onPostExecute(JSONArray result) {
             try {
+                Toast t = Toast.makeText(getApplicationContext(), "Search complete!", Toast.LENGTH_LONG);
+                t.show();
+
+                roList = new ArrayList<>();
 
                 // Convert JSONArray into list items.
                 for (int i = 0; i < result.length(); i++) {
                     JSONObject row = result.getJSONObject(i);
+
                     // Filter out requisition order items that are prepared already
                     if (!(Integer.parseInt(row.getString("PendingQty")) == 0
                             || Integer.parseInt(row.getString("CurrentInventoryQty")) == 0)) {
@@ -168,31 +156,10 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity{
                 }
 
                 // If there are still items to be prepared, attach adapter to the list
-                if (!roList.isEmpty()) {
-                    ROLinkedListAdapter adapter = new ROLinkedListAdapter(weakActivity.get(), roList);
-                    ListView listView = findViewById(R.id.requisitionOrderListView);
-                    listView.setAdapter(adapter);
-
-                    // Add listeners to each row on the listview
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
-
-                            // Start a new activity when a row is clicked on
-                            RequisitionOrder ro = (RequisitionOrder) adapter.getItemAtPosition(position);
-                            Intent i = new Intent(getApplicationContext(), Clerk_RequisitionOrder_ItemDetailsActivity.class);
-                            i.putExtra("requisitionId", ro.getRequisitionId());
-                            i.putExtra("itemNumber", ro.getItemNumber());
-                            i.putExtra("quantityOrdered", ro.getItemRequisitionQuantity());
-
-                            startActivityForResult(i, PREPARE_COMPLETE);
-                        }
-                    });
-
-                }
+                reloadAdapter();
 
                 // Otherwise, enable the "Ready For Collection" button, labelling the requisition order as "complete"
-                else {
+                if(roList.isEmpty()){
                     Button readyForCollectionButton = findViewById(R.id.readyForCollectionButton);
                     readyForCollectionButton.setEnabled(true);
                 }
@@ -226,8 +193,9 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity{
             String departmentId = sv.getQuery().toString().substring(0,4);
 
             // Fetch the place id
-            String sPlaceId = JSONParser.getStream(Constants.SERVICE_HOST + "/Department/Sorting/PlaceId/" + departmentId);
-            String placeId = sPlaceId.toString();
+            String placeId = JSONParser.getStream(Constants.SERVICE_HOST + "/Department/Sorting/PlaceId/" + departmentId + "/" + Constants.TOKEN);
+            placeId = placeId.trim();
+
 
             // Fetch the Date
             EditText dateEditText = findViewById(R.id.selectedDateEditText);
@@ -237,14 +205,18 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity{
             String roid = sv.getQuery().toString();
 
             try {
-                j.put("PlaceId", placeId);
+                j.put("PlaceId", Integer.parseInt(placeId));
                 j.put("CollectionDate", collectionDate);
                 j.put("DepartmentId", departmentId);
                 j.put("RoId", roid);
+                j.put("Token", Constants.TOKEN);
             }
             catch (Exception ex){
                 ex.printStackTrace();
             }
+
+            Log.i("UpdateCDRDD: ", j.toString());
+            Log.i("Ready Collection URL: ", Constants.SERVICE_HOST + "/SpecialRequest/Sorting/UpdateCDRDD");
 
             return JSONParser.postStream(Constants.SERVICE_HOST + "/SpecialRequest/Sorting/UpdateCDRDD", j.toString());
         }
@@ -294,4 +266,32 @@ public class Clerk_RequisitionOrderSearchActivity extends Activity{
         });
     }
 
+    // Loads the adapter for the list view
+    private void reloadAdapter(){
+        ListView listView = findViewById(R.id.requisitionOrderListView);
+        ROLinkedListAdapter adapter;
+        // Clear the list first
+        adapter = new ROLinkedListAdapter(getApplicationContext(), new ArrayList<RequisitionOrder>());
+        listView.setAdapter(adapter);
+
+        // Populate the list
+        adapter = new ROLinkedListAdapter(getApplicationContext(), roList);
+        listView.setAdapter(adapter);
+
+        // Add listeners to each row on the listview
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
+
+                // Start a new activity when a row is clicked on
+                RequisitionOrder ro = (RequisitionOrder) adapter.getItemAtPosition(position);
+                Intent i = new Intent(getApplicationContext(), Clerk_RequisitionOrder_ItemDetailsActivity.class);
+                i.putExtra("requisitionId", ro.getRequisitionId());
+                i.putExtra("itemNumber", ro.getItemNumber());
+                i.putExtra("quantityOrdered", ro.getItemPendingQuantity());
+
+                startActivityForResult(i, PREPARE_COMPLETE);
+            }
+        });
+    }
 }

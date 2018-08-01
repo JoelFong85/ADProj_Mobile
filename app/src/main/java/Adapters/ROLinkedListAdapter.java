@@ -43,22 +43,7 @@ public class ROLinkedListAdapter extends ArrayAdapter<RequisitionOrder> {
         // Populate the data into the template view using the data object
         col1Text.setText(ro.getItemNumber());
         col2Text.setText(ro.getDescription());
-        col3Text.setText(ro.getItemRequisitionQuantity());
-        // Toast t = Toast.makeText(getContext(), ro.getItemRequisitionQuantity(), Toast.LENGTH_SHORT);
-        //t.show();
-        col1Text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Start Special Orders Collection List Activity
-
-                Intent i = new Intent(getContext().getApplicationContext(), Clerk_RequisitionOrder_ItemDetailsActivity.class);
-                i.putExtra("requisitionId", ro.getRequisitionId());
-                i.putExtra("itemNumber", ro.getItemNumber());
-                i.putExtra("quantityOrdered", ro.getItemRequisitionQuantity());
-
-                getContext().startActivity(i);
-            }
-        });
+        col3Text.setText(ro.getItemPendingQuantity());
 
 
         // Return the completed view to render on screen
