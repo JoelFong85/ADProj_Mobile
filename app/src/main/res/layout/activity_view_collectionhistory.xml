@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     tools:context=".ViewCollectionhistory">
 
@@ -12,12 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Collection History"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp"
-        android:textStyle="bold|italic" />
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <ListView
+        android:id="@+id/listView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView2"/>
+        android:layout_marginTop="20dp" />
 </LinearLayout>
