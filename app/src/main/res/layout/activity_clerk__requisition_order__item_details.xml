@@ -49,7 +49,7 @@
         android:layout_height="16dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:text="Unit of Measurement"
+        android:text="UOM"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:text="Quantity Available"
+        android:text="Current Qty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:text="Quantity Ordered"
+        android:text="Ordered Qty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -79,7 +79,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:text="Quantity To Collect"
+        android:text="Collect Qty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:text="Quantity Adjusted"
+        android:text="Adjustment Qty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
