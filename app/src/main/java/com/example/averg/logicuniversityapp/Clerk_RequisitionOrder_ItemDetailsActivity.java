@@ -163,12 +163,14 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends Activity impleme
                 TextView qtyAvailableTextView = findViewById(R.id.details_QtyAvailable);
                 TextView qtyOrderedTextView = findViewById(R.id.details_QtyOrdered);
                 TextView uomTextView = findViewById(R.id.details_UOM);
+                EditText adjustmentQuantityEditText = findViewById(R.id.adjustedQuantityEditText);
 
                 descriptionTextView.setText(result.getString("description"));
                 itemCodeTextView.setText(result.getString("item_number"));
                 qtyAvailableTextView.setText(result.getString("current_quantity"));
                 qtyOrderedTextView.setText(requisitionQuantity);
                 uomTextView.setText(result.getString("unit_of_measurement"));
+                adjustmentQuantityEditText.setText("0");
 
                 // Set Quantity to collect to be the smaller of quantity available and quantity ordered.
                 TextView qtyAvailable = findViewById(R.id.details_QtyAvailable);
@@ -227,14 +229,15 @@ public class Clerk_RequisitionOrder_ItemDetailsActivity extends Activity impleme
             // Create a JSON to deliver the payload
             JSONObject j = new JSONObject();
             try {
-                j.put("RequisitionId", requisitionId);
                 j.put("Description", "");
                 j.put("ItemNumber", itemNumber);
-                j.put("PendingQty", 0);
                 j.put("QuantityOrdered", 0);
                 j.put("UnitOfMeasurement", "");
-                j.put("CollectedQty", quantityCollected);
                 j.put("CurrentInventoryQty", 0);
+                j.put("Token", Constants.TOKEN);
+                j.put("CollectedQty", quantityCollected);
+
+                Log.i("j Deduct: ", j.toString());
             }
             catch (Exception ex){
                 ex.printStackTrace();

@@ -35,11 +35,12 @@
 
     <ListView
         android:id="@+id/requisitionOrderListView"
-        android:layout_width="370dp"
-        android:layout_height="162dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/selectedDateEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,12 +66,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
-        android:layout_marginTop="22dp"
         android:text="Item Name"
         app:layout_constraintBottom_toTopOf="@+id/requisitionOrderListView"
         app:layout_constraintEnd_toStartOf="@+id/textView29"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
+        app:layout_constraintStart_toEndOf="@+id/textView28" />
 
     <TextView
         android:id="@+id/textView28"
@@ -78,12 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginTop="22dp"
         android:text="Item Code"
         app:layout_constraintBottom_toTopOf="@+id/requisitionOrderListView"
         app:layout_constraintEnd_toStartOf="@+id/textView27"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView29"
@@ -91,12 +88,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:text="Request Quantity"
+        android:text="Pending Quantity"
         app:layout_constraintBottom_toTopOf="@+id/requisitionOrderListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/requisitionOrderSearchView" />
+        app:layout_constraintStart_toEndOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/textView30"
