@@ -34,7 +34,7 @@ public class RequestConfirm extends Activity {
     TextView date;
     TextView status;
     ListView lv;
-    Button b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class RequestConfirm extends Activity {
         id =(TextView) findViewById(R.id.textViewid);
         date = (TextView) findViewById(R.id.textViewdate);
         status = (TextView)findViewById(R.id.textViewstatus);
-        b = (Button) findViewById(R.id.buttonaddnewrequest);
+
         new AsyncTask<String, Void, EmployeeRequesitionOrder>(){
             @Override
             protected EmployeeRequesitionOrder doInBackground(String... params){
@@ -74,7 +74,6 @@ public class RequestConfirm extends Activity {
             }
         }.execute(request_id);
 
-        b.setOnClickListener(additemListener);
     }
 
     public void displayorder(EmployeeRequesitionOrder res)
@@ -85,14 +84,6 @@ public class RequestConfirm extends Activity {
         status.setText(res.get("RequisitionStatus"));
     }
 
-    public View.OnClickListener additemListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View view){
-            Intent i= new Intent(getApplicationContext(),NewRequestActivity.class);
-            startActivity(i);
-        }
-
-    };
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
