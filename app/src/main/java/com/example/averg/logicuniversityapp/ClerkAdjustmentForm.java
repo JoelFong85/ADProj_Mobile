@@ -36,18 +36,18 @@ public class ClerkAdjustmentForm extends Activity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText etAdjQty= findViewById(R.id.editTextAdjQty);
-                EditText etAdjReason=findViewById(R.id.editTextReason);
-                TextView tvAdjQty=findViewById(R.id.tvAdjRemoveQtyValue);
-                String qty=String.valueOf(etAdjQty.getText());
+                EditText etAdjQty = findViewById(R.id.editTextAdjQty);
+                EditText etAdjReason = findViewById(R.id.editTextReason);
+                TextView tvAdjQty = findViewById(R.id.tvAdjRemoveQtyValue);
+                String qty = String.valueOf(etAdjQty.getText());
                 Integer pendingadjqty = Integer.parseInt(a.get("pending_adj_remove"));
-                Integer currentqty= Integer.parseInt(a.get("current_quantity"));
-                String reason= etAdjReason.getText().toString();
-                if(!qty.isEmpty()&&!qty.equals("null")&&qty!=null&&qty.trim()!="") {
-                    Integer adjqty=Integer.parseInt(qty);
-                    if(adjqty<0&&Math.abs(adjqty)>(pendingadjqty+currentqty)){
-                        showAToast("Enter between"+-(pendingadjqty+currentqty)+" to "+currentqty);
-                    }else if(adjqty!=0){
+                Integer currentqty = Integer.parseInt(a.get("current_quantity"));
+                String reason = etAdjReason.getText().toString();
+                if (!qty.isEmpty() && !qty.equals("null") && qty != null && qty.trim() != "") {
+                    Integer adjqty = Integer.parseInt(qty);
+                    if (adjqty < 0 && Math.abs(adjqty) > (pendingadjqty + currentqty)) {
+                        showAToast("Enter between" + -(pendingadjqty + currentqty) + " to " + currentqty);
+                    } else if (adjqty != 0) {
                         try {
                             Adjustment adj = new Adjustment(ItemNumber, qty, reason);
                             try {
@@ -62,10 +62,10 @@ public class ClerkAdjustmentForm extends Activity {
                             Log.e("CreateAdjustment", "CreationFailed");
                             e.printStackTrace();
                         }
-                    }else{
+                    } else {
                         showAToast("Qty cannot be 0");
                     }
-                }else{
+                } else {
                     showAToast("Enter qty");
                 }
 
@@ -73,8 +73,9 @@ public class ClerkAdjustmentForm extends Activity {
         });
     }
 
-    public void showAToast (String st){ //"Toast toast" is declared in the class
-        try{ toast.getView().isShown();     // true if visible
+    public void showAToast(String st) { //"Toast toast" is declared in the class
+        try {
+            toast.getView().isShown();     // true if visible
             toast.setText(st);
         } catch (Exception e) {         // invisible if exception
             toast = Toast.makeText(ClerkAdjustmentForm.this, st, Toast.LENGTH_LONG);
@@ -82,7 +83,7 @@ public class ClerkAdjustmentForm extends Activity {
         toast.show();  //finally display it
     }
 
-    private class CreateAdjustment extends AsyncTask<Adjustment, Void, String>{
+    private class CreateAdjustment extends AsyncTask<Adjustment, Void, String> {
         private WeakReference<Activity> weakActivity;
 
         public CreateAdjustment(Activity myactivity) {
@@ -91,7 +92,7 @@ public class ClerkAdjustmentForm extends Activity {
 
         @Override
         protected String doInBackground(Adjustment... params) {
-            Adjustment adj=params[0];
+            Adjustment adj = params[0];
             return Adjustment.CreateAdj(adj);
         }
 
@@ -110,18 +111,18 @@ public class ClerkAdjustmentForm extends Activity {
 
         @Override
         protected Inventory doInBackground(String... params) {
-            String itemcode=params[0];
+            String itemcode = params[0];
             return Inventory.GetInventoryByItemCode(itemcode);
         }
 
         @Override
         protected void onPostExecute(Inventory inventory) {
-            a=inventory;
+            a = inventory;
             TextView tvCode = findViewById(R.id.tvAdjCodeValue);
             TextView tvDesc = findViewById(R.id.tvAdjDescValue);
             TextView tvUOM = findViewById(R.id.tvAdjUOMvalue);
             TextView tvCurQ = findViewById(R.id.tvAdjCurrQtyValue);
-            TextView tvPAdremove=findViewById(R.id.tvAdjRemoveQtyValue);
+            TextView tvPAdremove = findViewById(R.id.tvAdjRemoveQtyValue);
             tvCode.setText(inventory.get("item_number"));
             tvDesc.setText(inventory.get("description"));
             tvUOM.setText(inventory.get("unit_of_measurement"));

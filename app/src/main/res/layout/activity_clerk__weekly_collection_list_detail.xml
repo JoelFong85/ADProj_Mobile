@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="Qty Available:" />
+                android:text="Available Qty:" />
 
             <TextView
                 android:id="@+id/textView_ColItem_availableQty1"
@@ -130,7 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="Qty Ordered:" />
+                android:text="Ordered Qty:" />
 
             <TextView
                 android:id="@+id/textView_ColItem_orderQty1"
@@ -151,7 +151,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="Qty Collected:" />
+                android:text="Collect Qty:" />
 
             <EditText
                 android:id="@+id/editText_ColItem_collectQty1"
@@ -159,6 +159,27 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:inputType="number" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView_ColItem_pendingAdjRemove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Pending Adj Qty:" />
+
+            <TextView
+                android:id="@+id/textView_ColItem_pendingAdjRemove1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6" />
         </TableRow>
 
         <TableRow
@@ -181,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:hint="@string/adjEditText"
-                android:inputType="number" />
+                android:inputType="number|numberSigned" />
         </TableRow>
 
         <TableRow
