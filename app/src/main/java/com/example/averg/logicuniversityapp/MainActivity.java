@@ -21,6 +21,7 @@ import Utilities.JSONParser;
 
 public class MainActivity extends Activity {
 
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // Setup onclicklistener for the login button
-        final Button loginButton = findViewById(R.id.loginButton);
+        loginButton = findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginButton.setText("Please wait...");
+                loginButton.setEnabled(false);
                 LoginTask loginTask = new LoginTask();
                 loginTask.execute();
             }
@@ -55,10 +58,10 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(JSONObject result) {
             try {
+                loginButton.setEnabled(true);
+                loginButton.setText("Login");
                 // Login is successful
                 String printString = result.getString("Token");
-                Toast t = Toast.makeText(getApplicationContext(), "Greetings, fellow human being with token " + printString, Toast.LENGTH_LONG);
-                t.show();
 
                 // Save token in Constants
                 Constants.TOKEN = result.getString("Token");
@@ -88,7 +91,7 @@ public class MainActivity extends Activity {
 
             } catch (Exception ex) {
                 // Login failed
-                Toast t = Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT);
+                Toast t = Toast.makeText(getApplicationContext(), "Login failed. Please try again", Toast.LENGTH_SHORT);
                 t.show();
                 ex.printStackTrace();
             }
