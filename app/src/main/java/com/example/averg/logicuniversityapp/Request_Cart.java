@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,10 +17,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import Adapters.MyAdapterRequestCart;
 import Models.reqcart;
+import Utilities.Constants;
+import Utilities.JSONParser;
 
 import static Models.reqcart.removeitem;
 import static Models.reqcart.updatequantity;
@@ -38,6 +46,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
         b.setOnClickListener(placerequestlistener);
         p.setOnClickListener(additemListener);
         lv.setOnItemClickListener(this);
+        registerForContextMenu(findViewById(R.id.requestcart));
     }
 
     public void setuplistviewcontent()
@@ -134,5 +143,50 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
       }
 
     };
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                // do something
+                new LogoutTask(Request_Cart.this).execute();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
+
+        private final WeakReference<Activity> weakActivity;
+
+        LogoutTask(Activity myActivity) {
+            this.weakActivity = new WeakReference<>(myActivity);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            // Tell the server to logout
+            return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Logout/" + Constants.TOKEN);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            // Clear the token
+            Constants.TOKEN = "";
+
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
+    }
+
 }
 

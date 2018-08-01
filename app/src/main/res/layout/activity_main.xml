@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context=".MainActivity">
 
     <TextView
@@ -15,8 +16,9 @@
         android:layout_marginStart="143dp"
         android:layout_marginTop="142dp"
         android:fontFamily="@font/carter_one"
-        android:text="Logic University Inventory System"
-        android:textSize="18sp"
+        android:text="LogicUniversity Stationery App"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,33 +60,10 @@
         android:layout_marginEnd="158dp"
         android:layout_marginStart="158dp"
         android:layout_marginTop="32dp"
+        android:background="@android:color/holo_blue_light"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
-
-    <Button
-        android:id="@+id/EmployeeButton"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="20dp"
-        android:text="Employee Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ClerkButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/ClerkButton"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Clerk Button"
-        app:layout_constraintEnd_toStartOf="@+id/EmployeeButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
