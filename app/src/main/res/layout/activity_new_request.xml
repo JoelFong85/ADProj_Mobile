@@ -9,6 +9,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
+    android:id="@+id/newrequestactivitiy"
     tools:context=".NewRequestActivity">
 
 
@@ -53,6 +54,7 @@
         android:id="@+id/list1"
         android:layout_width="374dp"
         android:layout_height="455dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

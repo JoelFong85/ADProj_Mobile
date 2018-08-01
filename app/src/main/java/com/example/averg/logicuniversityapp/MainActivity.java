@@ -38,26 +38,6 @@ public class MainActivity extends Activity {
                 loginTask.execute();
             }
         });
-
-        final Button clerkButton = findViewById(R.id.ClerkButton);
-        final Button employeeButton = findViewById(R.id.EmployeeButton);
-
-        clerkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Clerk_MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-        employeeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), User_MainActivity.class);
-                startActivity(i);
-            }
-        });
-
     }
 
     // An asynchronous task that logs the user in.

@@ -5,16 +5,24 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import Models.collectionpoint;
+import Utilities.Constants;
+import Utilities.JSONParser;
 
 public class ChangeCollectionpoint extends Activity{
     Button b;
@@ -23,6 +31,7 @@ public class ChangeCollectionpoint extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_collectionpoint);
         Spinner dropdown = (Spinner) findViewById(R.id.spinner4);
+        registerForContextMenu(findViewById(R.id.collectionpointactivity));
         new AsyncTask<Void,Void, List<collectionpoint>>() {
             @Override
             protected List<collectionpoint> doInBackground(Void... params) {
@@ -74,13 +83,53 @@ public class ChangeCollectionpoint extends Activity{
                         Toast.makeText(ChangeCollectionpoint.this,"Location is Changed",Toast.LENGTH_SHORT).show();
                     }
                 }.execute(c1);
-
-
             }
         });
-
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                // do something
+                new LogoutTask(ChangeCollectionpoint.this).execute();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
+
+        private final WeakReference<Activity> weakActivity;
+
+        LogoutTask(Activity myActivity) {
+            this.weakActivity = new WeakReference<>(myActivity);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            // Tell the server to logout
+            return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Logout/" + Constants.TOKEN);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            // Clear the token
+            Constants.TOKEN = "";
+
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
+    }
 
 
 }

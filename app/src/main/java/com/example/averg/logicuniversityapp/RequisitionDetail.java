@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +17,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import Models.ApproveRO;
 import Models.requisitionitemdetails;
+import Utilities.Constants;
+import Utilities.JSONParser;
 
 public class RequisitionDetail extends Activity {
 
@@ -28,6 +36,7 @@ public class RequisitionDetail extends Activity {
         setContentView(R.layout.activity_requisition_detail);
         Intent i = getIntent();
         final String roid = i.getStringExtra("roid");
+        registerForContextMenu(findViewById(R.id.requisitiondetailactivity));
         new AsyncTask<Void, Void, ApproveRO>() {
             @Override
             protected ApproveRO doInBackground(Void... params) {
@@ -132,6 +141,50 @@ public class RequisitionDetail extends Activity {
                 }.execute(x1);
             }
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                // do something
+                new LogoutTask(RequisitionDetail.this).execute();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
+
+        private final WeakReference<Activity> weakActivity;
+
+        LogoutTask(Activity myActivity) {
+            this.weakActivity = new WeakReference<>(myActivity);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            // Tell the server to logout
+            return JSONParser.getJSONFromUrl(Constants.SERVICE_HOST + "/Logout/" + Constants.TOKEN);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            // Clear the token
+            Constants.TOKEN = "";
+
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
     }
 }
 

@@ -6,7 +6,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,6 +41,7 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
         Button b = (Button) findViewById(R.id.button);
         et = (EditText)findViewById(R.id.editText);
         et.addTextChangedListener(searchBoxWatcher);
+        registerForContextMenu(findViewById(R.id.newrequestactivitiy));
         new AsyncTask<Void, Void, List<Inventory>>() {
             @Override
             protected List<Inventory> doInBackground(Void... params) {
@@ -124,25 +127,6 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
         }
     };
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item1:
-                new LogoutTask(this).execute();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-
     private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
 
         private final WeakReference<Activity> weakActivity;
@@ -166,4 +150,25 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
             startActivity(i);
         }
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                // do something
+                new LogoutTask(NewRequestActivity.this).execute();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
 }
