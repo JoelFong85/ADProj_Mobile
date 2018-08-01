@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ public class Clerk_SortingListActivity extends Activity implements AdapterView.O
 
     Calendar c;
     DatePickerDialog dpd;
-    TextView selectedDate;
+    EditText selectedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
