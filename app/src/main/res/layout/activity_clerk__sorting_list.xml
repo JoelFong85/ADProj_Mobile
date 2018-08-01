@@ -4,6 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Clerk_SortingListActivity">
+
+
+    <TextView
+        android:id="@+id/textView_SortingListTitle"
+        android:layout_width="382dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/listView_SortingList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_ReadyForCollection_selectDate"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Collection Date"
+        app:layout_constraintBottom_toTopOf="@+id/button_ReadyForCollection_Sorting"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_ReadyForCollection_Sorting"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/readyForCollect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_SortingList_selectedDate"
+        android:layout_width="194dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_ReadyForCollection_Sorting"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/listView_SortingList"
+        android:layout_width="match_parent"
+        android:layout_height="397dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="72dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_SortingList_selectedDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

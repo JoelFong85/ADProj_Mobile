@@ -15,4 +15,22 @@
     <string name="item1_value">Logout</string>
     <string name="customdialogtitle">Edit Cart Item</string>
     <!--Tharrani End-->
+    <!--Joel Start-->
+    <string name="collectionList">Warehouse Collection List</string>
+    <string name="CollectionItem">Collection Item Details</string>
+    <string name="reason">Enter adjustment reason</string>
+    <string name="collectQtyTooBig">Enter smaller qty prepared</string>
+    <string name="adjQtyTooBig">Reduce prepared or adjustment qty</string>
+    <string name="adjEditText">0</string>
+    <string name="sorting">Item Sorting</string>
+    <string name="noCollect">No items to collect</string>
+    <string name="readyForCollect">Ready for Collection</string>
+    <string name="selectDate">Please select collection date</string>
+    <string name="noSort">No departments to sort</string>
+    <string name="reallocateTooMuch">Reduce total reallocation qty</string>
+    <string name="enterNumber">Enter number only</string>
+    <string name="notZero">Number cant be negative</string>
+    <string name="noSortForThisDpt">Please collect items for this department first</string>
+    <!--Joel End-->
+
 </resources>

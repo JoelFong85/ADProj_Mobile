@@ -1,4 +1,4 @@
-package com.example.joel.adprojjoel;
+package Models;
 
 import android.util.Log;
 
@@ -6,20 +6,20 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.example.joel.adprojjoel.MainActivity.token;
+import Utilities.Constants;
+import Utilities.JSONParser;
 
 public class CollectionItem extends HashMap<String, String> {
 
-    final static String ipAdd = "http://172.23.200.89/LogicUniversity/Services/androidService.svc/";
-    final static String getCollectionListURL = "WarehouseCollection/List";
-    final static String sortCollectedGoodsURL = "WarehouseCollection/Sort";
-    final static String deductFromInventoryURL = "WarehouseCollection/DeductInventory";
+    //final static String ipAdd = "http://172.23.200.89/LogicUniversity/Services/androidService.svc/";
+    final private static String getCollectionListURL = "/WarehouseCollection/List";
+    final private static String sortCollectedGoodsURL = "/WarehouseCollection/Sort";
+    final private static String deductFromInventoryURL = "/WarehouseCollection/DeductInventory";
 
-    final static String getSortingListByDepartmentURL = "Department/Sorting/List/";
+    final private static String getSortingListByDepartmentURL = "/Department/Sorting/List/";
 
     // Full constructor
     public CollectionItem(String collectedQty, String currentInventoryQty, String description, String itemNumber, String pendingQty, String quantityOrdered, String requisitionId, String unitOfMeasurement) {
@@ -59,7 +59,7 @@ public class CollectionItem extends HashMap<String, String> {
     public static List<String> getCollectionList() {
         List<String> list = new ArrayList<String>();
 
-        JSONArray a = JSONParser.getJSONArrayFromUrl(ipAdd + getCollectionListURL + "/" + token);
+        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + getCollectionListURL + "/" + Constants.TOKEN);
         try {
             for (int i = 0; i < a.length(); i++) {
                 JSONObject o = a.getJSONObject(i); // hard code?
@@ -74,7 +74,7 @@ public class CollectionItem extends HashMap<String, String> {
     // Collection List - get individual collection Item details
     public static CollectionItem getCollectionItemDetails(String description) {
         CollectionItem ci = new CollectionItem();
-        JSONArray a = JSONParser.getJSONArrayFromUrl(ipAdd + getCollectionListURL + "/" + token);
+        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + getCollectionListURL + "/" + Constants.TOKEN);
 
         try {
             for (int i = 0; i < a.length(); i++) {
@@ -103,17 +103,17 @@ public class CollectionItem extends HashMap<String, String> {
             cItem.put("CurrentInventoryQty", Integer.parseInt(ci.get("CurrentInventoryQty")));
             cItem.put("CollectedQty", Integer.parseInt(ci.get("CollectedQty")));
             cItem.put("QuantityOrdered", Integer.parseInt(ci.get("QuantityOrdered")));
-            cItem.put("Token", token);
+            cItem.put("Token", Constants.TOKEN);
         } catch (Exception e) {
             Log.e("CollectList.updateItem", "JSONArray error");
 
         }
 
         // Sort Collected Good
-        String sortCollectedGoods = JSONParser.postStream(ipAdd + sortCollectedGoodsURL, cItem.toString());
+        String sortCollectedGoods = JSONParser.postStream(Constants.SERVICE_HOST + sortCollectedGoodsURL, cItem.toString());
 
         // Update Inventory
-        String deductFromInventory = JSONParser.postStream(ipAdd + deductFromInventoryURL, cItem.toString());
+        String deductFromInventory = JSONParser.postStream(Constants.SERVICE_HOST + deductFromInventoryURL, cItem.toString());
     }
 
     // For Sorting List - get sorting list by department
@@ -125,8 +125,8 @@ public class CollectionItem extends HashMap<String, String> {
             encodedUrl = selectedDptName.replace(" ", "%20");
         }
 
-        String fullURL = ipAdd + getSortingListByDepartmentURL + encodedUrl  + "/" + token;
-        JSONArray a = JSONParser.getJSONArrayFromUrl(ipAdd + getSortingListByDepartmentURL + encodedUrl  + "/" + token);
+        String fullURL = Constants.SERVICE_HOST + getSortingListByDepartmentURL + encodedUrl  + "/" + Constants.TOKEN;
+        JSONArray a = JSONParser.getJSONArrayFromUrl(Constants.SERVICE_HOST + getSortingListByDepartmentURL + encodedUrl  + "/" + Constants.TOKEN);
 
         try {
             for (int i = 0; i < a.length(); i++) {

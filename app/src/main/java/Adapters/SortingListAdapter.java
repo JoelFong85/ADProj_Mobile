@@ -1,4 +1,4 @@
-package com.example.joel.adprojjoel;
+package Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.averg.logicuniversityapp.R;
+
 import java.util.List;
+
+import Models.CollectionItem;
 
 public class SortingListAdapter extends ArrayAdapter<CollectionItem> {
     private List<CollectionItem> items;
