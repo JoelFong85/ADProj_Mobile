@@ -122,9 +122,9 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
 
                     @Override
                     protected void onPostExecute(Void result) {
-                        Intent intent = new Intent();
-                        setResult(RESULT_OK, intent);
-                        finish();
+//                        Intent intent = new Intent();
+//                        setResult(RESULT_OK, intent);
+//                        finish();
                     }
                 }.execute(adj);
 
