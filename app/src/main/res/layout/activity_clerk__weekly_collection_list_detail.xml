@@ -226,6 +226,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="10dp"
         android:hint="@string/reason"
+        android:maxLength="299"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_ColItem_adjQty1" />

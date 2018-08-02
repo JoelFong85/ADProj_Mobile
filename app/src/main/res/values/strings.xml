@@ -19,8 +19,8 @@
     <string name="collectionList">Warehouse Collection List</string>
     <string name="CollectionItem">Collection Item Details</string>
     <string name="reason">Enter adjustment reason</string>
-    <string name="collectQtyTooBig">Enter smaller qty prepared</string>
-    <string name="adjQtyTooBig">Reduce prepared or adjustment qty</string>
+    <string name="collectQtyTooBig">Enter smaller collect qty</string>
+    <string name="adjQtyTooBig">Reduce collect or adjustment qty</string>
     <string name="adjEditText">0</string>
     <string name="sorting">Item Sorting</string>
     <string name="noCollect">No items to collect</string>
