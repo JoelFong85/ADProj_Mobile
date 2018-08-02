@@ -116,6 +116,7 @@ public class DisbursementList extends Activity implements AdapterView.OnItemClic
         i.putExtra("collection_id", select_id);
         i.putExtra("department_pin", pin);
         startActivity(i);
+        finish();
     }
 
     public View.OnClickListener searchbydate = new View.OnClickListener() {
