@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.4"
-                android:text="Order Qty:"
+                android:text="Ordered Qty:"
                 android:textColor="#808080"
                 android:textSize="14dp" />
 
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.4"
-                android:text="Distribute Qty:"
+                android:text="Collected Qty:"
                 android:textColor="#808080"
                 android:textSize="14dp" />
 
