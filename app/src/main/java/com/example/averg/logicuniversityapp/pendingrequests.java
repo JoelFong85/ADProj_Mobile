@@ -56,5 +56,6 @@ public class pendingrequests extends Activity  implements AdapterView.OnItemClic
         Intent i = new Intent(this, RequisitionDetail.class);
         i.putExtra("roid", r.get("requisition_id"));
         startActivity(i);
+        finish();
     }
 }
