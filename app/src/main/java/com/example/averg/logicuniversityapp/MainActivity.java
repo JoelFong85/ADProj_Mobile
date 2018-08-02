@@ -73,16 +73,16 @@ public class MainActivity extends Activity {
                     startActivity(i);
                 }
 
-                else if(role.equals(Constants.ROLES_EMPLOYEE)) {
+                if(role.equals(Constants.ROLES_EMPLOYEE)) {
                     Intent i = new Intent(getApplicationContext(), User_MainActivity.class);
                     startActivity(i);
                 }
-                else if(role.equals(Constants.ROLES_DEPARTMENT_REPRESENTATIVE))
+                if(role.equals(Constants.ROLES_DEPARTMENT_REPRESENTATIVE))
                 {
                     Intent i = new Intent(getApplicationContext(), DepartmentRep.class);
                     startActivity(i);
                 }
-                else if(role.equals(Constants.ROLES_DEPARTMENT_HEAD))
+                else if(role.equals(Constants.ROLES_DEPARTMENT_HEAD) || role.equals(Constants.ROLES_DEPARTMENT_TEMP_HEAD))
                 {
                     Intent i = new Intent(getApplicationContext(), Departmenthead.class);
                     startActivity(i);

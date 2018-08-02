@@ -13,4 +13,6 @@ public class Constants {
     public static String ROLES_EMPLOYEE = "employee";
     public static String ROLES_DEPARTMENT_REPRESENTATIVE = "deprep";
     public static String ROLES_DEPARTMENT_HEAD = "dephead";
+
+    public static String ROLES_DEPARTMENT_TEMP_HEAD = "depheadtemp";
 }
