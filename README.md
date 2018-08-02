@@ -1,12 +1,12 @@
 # ADmobile
 AD Project for SA46
 
-Running instructions
+# Running instructions
 	- Complete the [ASP.net](https://github.com/ADprojectTeam3/Team3ADProject) project setup.
 	- Clone or download the project into Android Studio
 	- Install the APK onto an Android device
 	
-Logging in:
+# Logging in:
 	- The username and password is the same as that in the ASP.net project, the password for all of them is "testing_123"
 	
 	
