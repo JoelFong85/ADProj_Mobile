@@ -73,12 +73,20 @@ public class Budget extends Activity {
                 pieChart.setTransparentCircleRadius(61f);
 
                 ArrayList<PieEntry> yvalues=new ArrayList<PieEntry>();
-                yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetallocated"))-Float.parseFloat(result.get("budgetspent")),"Remaining Budget"));
-                yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetspent")),"Approved Budget"));
+                Float a=Float.parseFloat(result.get("budgetallocated"))-Float.parseFloat(result.get("budgetspent"));
+                if(a>0) {
+                    yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetallocated")) - Float.parseFloat(result.get("budgetspent")), "Remaining Budget"));
+                    yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetspent")), "Approved Budget"));
+                }
+                else
+                {
+                    yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetspent")), "Approved Budget"));
+                }
 
                 PieDataSet dataSet=new PieDataSet(yvalues,"Budget Usage");
                 dataSet.setSliceSpace(3f);
                 dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                pieChart.setEntryLabelColor(Color.BLACK);
 
                 PieData data=new PieData((dataSet));
                 data.setValueTextSize(10f);
