@@ -102,6 +102,9 @@ public class ClerkAdjustmentForm extends Activity {
 
         @Override
         protected void onPostExecute(String s) {
+            Intent Invintent=new Intent(ClerkAdjustmentForm.this, ClerkAdjustmentInventoryActivity.class);
+            ClerkAdjustmentForm.this.startActivity(Invintent);
+            ClerkAdjustmentForm.this.finish();
             String message = s;
             if(message.isEmpty()){
                 s=ItemNumber.trim()+" adj request submitted";
