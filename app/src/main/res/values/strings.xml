@@ -16,7 +16,7 @@
     <string name="customdialogtitle">Edit Cart Item</string>
     <!--Tharrani End-->
     <!--Joel Start-->
-    <string name="collectionList">Warehouse Collection List</string>
+    <string name="collectionList">Weekly Collection List</string>
     <string name="CollectionItem">Collection Item Details</string>
     <string name="reason">Enter adjustment reason</string>
     <string name="collectQtyTooBig">Enter smaller collect qty</string>
