@@ -2,7 +2,8 @@ package Utilities;
 
 public class Constants {
 
-    public static final String SERVICE_HOST = "http://172.17.147.64/LogicUniversity/Services/AndroidService.svc"; // 172.17.147.64 was used for last presentation
+    // Session information
+    public static final String SERVICE_HOST = "http://172.17.147.64/LogicUniversity/Services/AndroidService.svc"; // Server to connect to.
     public static String TOKEN = "7a654800-f3ca-4f9c-94c2-7b839929076c";
 
     // Roles
