@@ -29,32 +29,32 @@ import Utilities.Constants;
 import Utilities.JSONParser;
 
 public class RequisitionDetail extends Activity {
-
+//sruthi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_detail);
         Intent i = getIntent();
-        final String roid = i.getStringExtra("roid");
+        final String roid = i.getStringExtra("roid"); // get roid from the extras
         registerForContextMenu(findViewById(R.id.requisitiondetailactivity));
         new AsyncTask<Void, Void, ApproveRO>() {
             @Override
             protected ApproveRO doInBackground(Void... params) {
                 return ApproveRO.getRO(roid);
-            }
+            }//get the ro details based on roid
 
             @Override
             protected void onPostExecute(ApproveRO result) {
                 TextView t1 = (TextView) findViewById(R.id.textView7);
-                t1.setText(result.get("requisition_id"));
+                t1.setText(result.get("requisition_id")); //getting the requisition id and setting it as text
                 TextView t2 = (TextView) findViewById(R.id.textView9);
-                t2.setText(result.get("name"));
+                t2.setText(result.get("name")); //getting the name and setting it as text
                 TextView t3 = (TextView) findViewById(R.id.textView11);
-                t3.setText(result.get("requisition_Date"));
+                t3.setText(result.get("requisition_Date")); //getting the requisition date and setting it as text
                 TextView t4 = (TextView) findViewById(R.id.textView13);
-                t4.setText(result.get("status"));
+                t4.setText(result.get("status")); //getting the status and setting it as text
                 TextView t5 = (TextView) findViewById(R.id.textView15);
-                t5.setText(result.get("sum"));
+                t5.setText(result.get("sum")); //getting the sum and setting it as text
                 EditText e1 = (EditText) findViewById(R.id.editText);
 
             }
@@ -63,7 +63,7 @@ public class RequisitionDetail extends Activity {
         new AsyncTask<Void, Void, List<requisitionitemdetails>>() {
             @Override
             protected List<requisitionitemdetails> doInBackground(Void... params) {
-                return requisitionitemdetails.jread(roid);
+                return requisitionitemdetails.jread(roid); // get the items in a particular requisition order
             }
             @Override
             protected void onPostExecute(List<requisitionitemdetails> result) {
@@ -71,7 +71,7 @@ public class RequisitionDetail extends Activity {
                 lv.setAdapter(new SimpleAdapter
                         (RequisitionDetail.this,result,R.layout.itemdetails,
                                 new String[]{"description","noofitems"},
-                                new int[]{ R.id.textView5, R.id.textView6}));
+                                new int[]{ R.id.textView5, R.id.textView6})); // setting the values to the list view
             }
         }.execute();
 
@@ -89,7 +89,7 @@ public class RequisitionDetail extends Activity {
                     @Override
                     protected Void doInBackground(ApproveRO... params) {
                         try {
-                            ApproveRO.updateROwithapprove(params[0]);
+                            ApproveRO.updateROwithapprove(params[0]); // method to approve the ro
 
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
@@ -100,7 +100,7 @@ public class RequisitionDetail extends Activity {
                     @Override
                     protected void onPostExecute(Void result) {
                         Toast.makeText(RequisitionDetail.this, "Request is approved", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(RequisitionDetail.this, pendingrequests.class);
+                        Intent i = new Intent(RequisitionDetail.this, pendingrequests.class); // going back to details upon approval
                         startActivity(i);
                         finish();
                     }
@@ -123,7 +123,7 @@ public class RequisitionDetail extends Activity {
                     @Override
                     protected Void doInBackground(ApproveRO... params) {
                         try {
-                            ApproveRO.updateROwithreject(params[0]);
+                            ApproveRO.updateROwithreject(params[0]); // method to reject the ro
 
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
@@ -134,7 +134,7 @@ public class RequisitionDetail extends Activity {
                     @Override
                     protected void onPostExecute(Void result) {
                         Toast.makeText(RequisitionDetail.this, "Request is rejected", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(RequisitionDetail.this, pendingrequests.class);
+                        Intent i = new Intent(RequisitionDetail.this, pendingrequests.class); // going back to pending requests after rejection
                         startActivity(i);
                         finish();
                     }
@@ -148,7 +148,7 @@ public class RequisitionDetail extends Activity {
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu, menu);//to get the logout functionality
     }
 
     @Override

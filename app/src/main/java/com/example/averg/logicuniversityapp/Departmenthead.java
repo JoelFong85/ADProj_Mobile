@@ -16,7 +16,7 @@ import Utilities.Constants;
 import Utilities.JSONParser;
 
 public class Departmenthead extends Activity {
-
+//sruthi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class Departmenthead extends Activity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(Departmenthead.this,pendingrequests.class);
+                Intent i=new Intent(Departmenthead.this,pendingrequests.class); // go to pending requests for approval
                 startActivity(i);
             }
         });
@@ -33,14 +33,14 @@ public class Departmenthead extends Activity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(Departmenthead.this,Budget.class);
+                Intent i=new Intent(Departmenthead.this,Budget.class); // go to budget page
                 startActivity(i);
             }
         });
         Button b2 = (Button)findViewById(R.id.button8);
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { // to log out
                 new LogoutTask(Departmenthead.this).execute();
             }
         });

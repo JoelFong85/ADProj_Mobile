@@ -26,6 +26,7 @@ import Utilities.JSONParser;
 
 public class ChangeCollectionpoint extends Activity{
     Button b;
+    //sruthi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class ChangeCollectionpoint extends Activity{
         new AsyncTask<Void,Void, List<collectionpoint>>() {
             @Override
             protected List<collectionpoint> doInBackground(Void... params) {
-                return collectionpoint.jread();
+                return collectionpoint.jread();//to get the list of the collection points
             }
             @Override
             protected void onPostExecute(List<collectionpoint> result) {
@@ -44,12 +45,12 @@ public class ChangeCollectionpoint extends Activity{
                 collectionpoint.Values=new String[result.size()];
                 for(int i=0;i<result.size();i++)
                 {
-                    points[i]=result.get(i).get("collectionplace");
+                    points[i]=result.get(i).get("collectionplace");//assigning the collection place to the array
                     collectionpoint.Values[i]=result.get(i).get("id");
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChangeCollectionpoint.this,android.R.layout.simple_spinner_item,points);
                 adapter.setDropDownViewResource(android.R.layout
-                        .simple_spinner_dropdown_item);
+                        .simple_spinner_dropdown_item); // setting the spinner adapter and assigning it the values
                 dropdown.setAdapter(adapter);
             }
         }.execute();
@@ -69,7 +70,7 @@ public class ChangeCollectionpoint extends Activity{
                     @Override
                     protected Void doInBackground(collectionpoint... params) {
                         try {
-                            collectionpoint.updatecollection(params[0]);
+                            collectionpoint.updatecollection(params[0]);//to update the collection point
 
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
@@ -78,7 +79,7 @@ public class ChangeCollectionpoint extends Activity{
                     }
                     @Override
                     protected void onPostExecute(Void result) {
-                        Intent i = new Intent(getApplicationContext(), DepartmentRep.class);
+                        Intent i = new Intent(getApplicationContext(), DepartmentRep.class); // go to home screen of department rep
                         startActivity(i);
                         Toast.makeText(ChangeCollectionpoint.this,"Location is Changed",Toast.LENGTH_SHORT).show();
                     }

@@ -22,6 +22,7 @@ import Utilities.Constants;
 import Utilities.JSONParser;
 
 public class ViewCollectionhistory extends Activity {
+    //sruthi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class ViewCollectionhistory extends Activity {
         new AsyncTask<Void, Void, List<collectionhistory>>() {
             @Override
             protected List<collectionhistory> doInBackground(Void... params) {
-                return collectionhistory.jread();
+                return collectionhistory.jread(); // get the collection history
             }
             @Override
             protected void onPostExecute(List<collectionhistory> result) {
@@ -39,7 +40,7 @@ public class ViewCollectionhistory extends Activity {
                 lv.setAdapter(new SimpleAdapter
                         (ViewCollectionhistory.this,result, android.R.layout.simple_list_item_2,
                                 new String[]{"collectionDate", "collectionplace"},
-                                new int[]{ android.R.id.text1, android.R.id.text2}));
+                                new int[]{ android.R.id.text1, android.R.id.text2})); //setting the list view with the collection history
             }
         }.execute();
     }
@@ -48,7 +49,7 @@ public class ViewCollectionhistory extends Activity {
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getMenuInflater(); //to get the logout functionality
         inflater.inflate(R.menu.menu, menu);
     }
 

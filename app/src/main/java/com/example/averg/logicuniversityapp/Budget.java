@@ -32,7 +32,7 @@ import Utilities.JSONParser;
 
 public class Budget extends Activity {
 
-
+//sruthi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,22 +41,23 @@ public class Budget extends Activity {
         new AsyncTask<Void, Void, budgetbydepartment>() {
             @Override
             protected budgetbydepartment doInBackground(Void... params) {
+                //to get the budget for the department for the particular month
                 return budgetbydepartment.jread();
             }
 
             @Override
             protected void onPostExecute(budgetbydepartment result) {
                 TextView t1 = (TextView) findViewById(R.id.textView18);
-                t1.setText(result.get("budgetallocated"));
+                t1.setText(result.get("budgetallocated"));//to get the budget allocated and assign it to the text view
                 TextView t2 = (TextView) findViewById(R.id.textView19);
-                t2.setText(result.get("budgetspent"));
+                t2.setText(result.get("budgetspent")); // to get the budget spend and assign it to the text view
             }
         }.execute();
 
         new AsyncTask<Void, Void, budgetbydepartment>() {
             @Override
             protected budgetbydepartment doInBackground(Void... params) {
-                return budgetbydepartment.jread();
+                return budgetbydepartment.jread(); //to get the budget for the department for the particular month
             }
 
             @Override
@@ -74,7 +75,7 @@ public class Budget extends Activity {
 
                 ArrayList<PieEntry> yvalues=new ArrayList<PieEntry>();
                 Float a=Float.parseFloat(result.get("budgetallocated"))-Float.parseFloat(result.get("budgetspent"));
-                if(a>0) {
+                if(a>0) {//assigning the budget values to the arraylist to pass on to the pie chart
                     yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetallocated")) - Float.parseFloat(result.get("budgetspent")), "Remaining Budget"));
                     yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetspent")), "Approved Budget"));
                 }
@@ -82,7 +83,7 @@ public class Budget extends Activity {
                 {
                     yvalues.add(new PieEntry(Float.parseFloat(result.get("budgetspent")), "Approved Budget"));
                 }
-
+                //assigning the data to the pie chart
                 PieDataSet dataSet=new PieDataSet(yvalues,"Budget Usage");
                 dataSet.setSliceSpace(3f);
                 dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
@@ -100,6 +101,7 @@ public class Budget extends Activity {
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+        //to display the logout functionality on right click
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
     }

@@ -27,7 +27,7 @@ import Utilities.Constants;
 import Utilities.JSONParser;
 
 public class pendingrequests extends Activity  implements AdapterView.OnItemClickListener {
-
+//sruthi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,24 +36,26 @@ public class pendingrequests extends Activity  implements AdapterView.OnItemClic
         new AsyncTask<Void, Void, List<ApproveRO>>() {
             @Override
             protected List<ApproveRO> doInBackground(Void... params) {
+                //to get the list of pending ros
                 return ApproveRO.jread();
             }
             @Override
             protected void onPostExecute(List<ApproveRO> result) {
                 ListView lv = (ListView) findViewById(R.id.listView1);
+                //
                 lv.setAdapter(new SimpleAdapter
                         (pendingrequests.this,result,R.layout.row,
                                 new String[]{"requisition_id", "name","status","sum"},
                                 new int[]{R.id.textView1, R.id.text2,R.id.text3,R.id.text4}));
             }
         }.execute();
-        lv.setOnItemClickListener(this);
+        lv.setOnItemClickListener(this);// to set the list view with values
     }
 
     @Override
     public void onItemClick(AdapterView<?> av, View v, int position, long id) {
         ApproveRO r = (ApproveRO) av.getAdapter().getItem(position);
-        Intent i = new Intent(this, RequisitionDetail.class);
+        Intent i = new Intent(this, RequisitionDetail.class); // to go to ro details page
         i.putExtra("roid", r.get("requisition_id"));
         startActivity(i);
         finish();

@@ -24,7 +24,7 @@ public class DepartmentRep extends Activity {
         Button b1=(Button)findViewById(R.id.button4);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { // to go to change collection point
                 Intent i=new Intent(DepartmentRep.this,ChangeCollectionpoint.class);
                 startActivity(i);
             }
@@ -32,7 +32,7 @@ public class DepartmentRep extends Activity {
         Button b2=(Button)findViewById(R.id.button5);
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { // to go to view collection history of the department
                 Intent i=new Intent(DepartmentRep.this,ViewCollectionhistory.class);
                 startActivity(i);
             }
@@ -40,7 +40,7 @@ public class DepartmentRep extends Activity {
         Button b3=(Button)findViewById(R.id.button6);
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { // to go to place a new request
                 Intent i=new Intent(DepartmentRep.this,NewRequestActivity.class);
                 startActivity(i);
             }
@@ -48,7 +48,7 @@ public class DepartmentRep extends Activity {
         Button b4 = (Button) findViewById(R.id.button2);
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { // to logout
                 new LogoutTask(DepartmentRep.this).execute();
             }
         });
