@@ -71,6 +71,8 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
                 int orderedQty = Integer.parseInt(orderQty.getText().toString());
                 int collectedQty = Integer.parseInt(collectQty.getText().toString());
 
+                TextView pendingAdjRemove = (TextView) findViewById(R.id.textView_ColItem_pendingAdjRemove1);
+                int pendingQty = Integer.parseInt(pendingAdjRemove.getText().toString());
 
                 //prevent -ve collection
                 if (collectedQty < 0) {
@@ -96,7 +98,7 @@ public class Clerk_WeeklyCollectionListDetailActivity extends Activity {
                 String inputAdjReason = etAdjReason.getText().toString();
 
                 //validate adj qty + collected qty is available in inventory
-                if (adjustedQty < (collectedQty - availableQty)) {
+                if (adjustedQty < (collectedQty - availableQty - pendingQty)) {
                     Toast.makeText(Clerk_WeeklyCollectionListDetailActivity.this, getString(R.string.adjQtyTooBig), Toast.LENGTH_SHORT).show();
                     return;
                 }
