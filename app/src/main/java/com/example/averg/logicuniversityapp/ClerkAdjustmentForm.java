@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference;
 import Models.Adjustment;
 import Models.Inventory;
 import Utilities.Constants;
-
+//esther
 public class ClerkAdjustmentForm extends Activity {
     String ItemNumber;
     Toast toast;
@@ -76,7 +76,7 @@ public class ClerkAdjustmentForm extends Activity {
             }
         });
     }
-
+//show toast method
     public void showAToast(String st) { //"Toast toast" is declared in the class
         try {
             toast.getView().isShown();     // true if visible
@@ -86,7 +86,7 @@ public class ClerkAdjustmentForm extends Activity {
         }
         toast.show();  //finally display it
     }
-
+//create adustment async task
     private class CreateAdjustment extends AsyncTask<Adjustment, Void, String> {
         private WeakReference<Activity> weakActivity;
 
@@ -112,7 +112,7 @@ public class ClerkAdjustmentForm extends Activity {
             showAToast(s);
         }
     }
-
+//fetch item details async task
     private class FetchItemDetails extends AsyncTask<String, Void, Inventory> {
         private WeakReference<Activity> weakActivity;
 
