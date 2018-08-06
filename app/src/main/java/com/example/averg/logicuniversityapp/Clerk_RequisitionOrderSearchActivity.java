@@ -31,6 +31,10 @@ import Models.RequisitionOrder;
 import Utilities.Constants;
 import Utilities.JSONParser;
 
+/* Written by: Chua Khiong Yang
+
+ */
+
 public class Clerk_RequisitionOrderSearchActivity extends Activity{
 
     public ArrayList<RequisitionOrder> roList;
