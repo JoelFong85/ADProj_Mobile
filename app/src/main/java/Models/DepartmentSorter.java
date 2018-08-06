@@ -36,6 +36,7 @@ public class DepartmentSorter extends HashMap<String, String> {
     public DepartmentSorter() {
     }
 
+    //get list of departments with items for collection
     public static List<String> displayListofDepartmentsForCollection() {
         List<String> list = new ArrayList<String>();
 
@@ -51,6 +52,7 @@ public class DepartmentSorter extends HashMap<String, String> {
         return (list);
     }
 
+    //gets dpt id from dpt name, for identifying related ROIDs
     public static String getDptIdFromDptName(String selectedDptName) {
 
         String encodedUrl = "";
@@ -64,12 +66,14 @@ public class DepartmentSorter extends HashMap<String, String> {
         return a;
     }
 
+    //get place id from dpt id, for adding to collection details table.
     public static String getPlaceIdFromDptId(String dptId) {
         dptId = dptId.replace("\"", "");
         String a = JSONParser.getStream(Constants.SERVICE_HOST + getPlaceIdFromDptIdRURL + dptId + "/" + Constants.TOKEN);
         return a;
     }
 
+    //when ready for collection button is clicked.
     public static void readyForCollection(String dptID, String selectedDate) {
 
         dptID = dptID.replace("\n", "").replace("\r", "").replace("\"", "");
@@ -88,7 +92,7 @@ public class DepartmentSorter extends HashMap<String, String> {
             // Insert to collection details table
             String insertCollectionDetailsRow = JSONParser.postStream(Constants.SERVICE_HOST + insertCollectionDetailsRowURL, cDetails.toString());
 
-            // Insert ROIDs to Disbursement List
+            // Insert ROIDs to Disbursement List, sends emails too
             String insertDisbursementListROId = JSONParser.getStream(Constants.SERVICE_HOST + insertDisbursementListROIdURL + dptID + "/" + Constants.TOKEN);
 
         } catch (Exception e) {
@@ -96,12 +100,14 @@ public class DepartmentSorter extends HashMap<String, String> {
         }
     }
 
+    //not used, can remove
     public static String getDptRepEmailAddFromDptID(String dptID) {
         String a = JSONParser.getStream(Constants.SERVICE_HOST + getDptRepEmailAddFromDptIDURL + dptID + "/" + Constants.TOKEN);
         a = a.replace("\n", "").replace("\r", "");
         return a;
     }
 
+    //to format date for writing to database
     public static String formateDateFromstring(String inputFormat, String outputFormat, String inputDate) {
 
         Date parsed = null;

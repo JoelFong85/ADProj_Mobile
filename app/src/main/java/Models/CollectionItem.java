@@ -124,10 +124,10 @@ public class CollectionItem extends HashMap<String, String> {
 
         }
 
-        // Sort Collected Good
+        // Sort Collected Goods
         String sortCollectedGoods = JSONParser.postStream(Constants.SERVICE_HOST + sortCollectedGoodsURL, cItem.toString());
 
-        // Update Inventory
+        // Update Inventory after collecting from warehouse
         String deductFromInventory = JSONParser.postStream(Constants.SERVICE_HOST + deductFromInventoryURL, cItem.toString());
     }
 

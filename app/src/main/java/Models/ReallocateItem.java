@@ -65,6 +65,7 @@ public class ReallocateItem extends HashMap<String, String> {
         return (null);
     }
 
+    //To update qty in Requisition Order Details table after reallocation
     public static void updateReallocation(List<ReallocateItem> ri) {
         int oldCollect = 0;
         int newCollect = 0;
@@ -84,8 +85,10 @@ public class ReallocateItem extends HashMap<String, String> {
                 Log.e("Reallocate.update", "JSONArray error");
             }
 
+            //resets ROD table before updating
             String ResetRODTable = JSONParser.postStream(Constants.SERVICE_HOST + resetRODTableURL, cItem.toString());
 
+            //updating new qty to ROD table.
             String UpdateRODTable = JSONParser.postStream(Constants.SERVICE_HOST + updateRODTableURL, cItem.toString());
 
             oldCollect += Integer.parseInt(r.get("CollectedQty").toString().trim());
