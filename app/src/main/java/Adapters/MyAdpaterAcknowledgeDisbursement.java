@@ -15,6 +15,7 @@ import java.util.List;
 import Models.Disbursement_Detail;
 
 public class MyAdpaterAcknowledgeDisbursement extends ArrayAdapter<Disbursement_Detail> {
+    //Tharrani Udhayasekar
 
     private List<Disbursement_Detail> items;
     int resource;

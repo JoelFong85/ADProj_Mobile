@@ -32,6 +32,8 @@ import static Models.reqcart.updatequantity;
 
 public class Request_Cart extends Activity implements AdapterView.OnItemClickListener{
 
+    //Tharrani Udhayasekar
+
     ListView lv;
     Button b;
     Button p;
@@ -49,6 +51,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
         registerForContextMenu(findViewById(R.id.requestcart));
     }
 
+    //to load listview with cart items
     public void setuplistviewcontent()
     {
         new AsyncTask<Void,Void,List<reqcart>>(){
@@ -72,6 +75,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
         }.execute();
     }
 
+    //display edit dialog box on clicking item
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final reqcart item = (reqcart) parent.getItemAtPosition(position);
@@ -114,6 +118,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
         d.show();
     }
 
+    //business logic to place requisition in database.
     public View.OnClickListener placerequestlistener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -135,6 +140,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
         }
     };
 
+    //redirect to new request activity
     public View.OnClickListener additemListener = new View.OnClickListener(){
       @Override
         public void onClick(View view){
@@ -164,6 +170,7 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
         }
     }
 
+    //method to clear token and logout
     private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
 
         private final WeakReference<Activity> weakActivity;
@@ -187,6 +194,5 @@ public class Request_Cart extends Activity implements AdapterView.OnItemClickLis
             startActivity(i);
         }
     }
-
 }
 

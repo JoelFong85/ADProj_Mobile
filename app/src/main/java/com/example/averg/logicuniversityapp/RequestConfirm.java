@@ -29,6 +29,8 @@ import static Models.reqcart.emptycart;
 
 public class RequestConfirm extends Activity {
 
+    //Tharrani Udhayasekar
+
     String request_id;
     TextView id;
     TextView date;
@@ -49,6 +51,7 @@ public class RequestConfirm extends Activity {
         date = (TextView) findViewById(R.id.textViewdate);
         status = (TextView)findViewById(R.id.textViewstatus);
 
+        //load requisition order
         new AsyncTask<String, Void, EmployeeRequesitionOrder>(){
             @Override
             protected EmployeeRequesitionOrder doInBackground(String... params){
@@ -60,7 +63,7 @@ public class RequestConfirm extends Activity {
             }
         }.execute(request_id);
 
-
+//load requsititon order detail
         new AsyncTask<String,Void,List<EmployeeRequisitionOrderDetail>>(){
             @Override
             protected List<EmployeeRequisitionOrderDetail> doInBackground(String... params){
@@ -105,6 +108,7 @@ public class RequestConfirm extends Activity {
         }
     }
 
+    //method to logout and clear token
     private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
 
         private final WeakReference<Activity> weakActivity;

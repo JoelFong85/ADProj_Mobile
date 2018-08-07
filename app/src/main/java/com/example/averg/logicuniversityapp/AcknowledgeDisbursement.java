@@ -29,6 +29,7 @@ import static Models.Disbursement_List.clearlist;
 
 public class AcknowledgeDisbursement extends Activity implements AdapterView.OnItemClickListener {
 
+    //Tharrani Udhayasekar
     String collect_id;
     TextView de;
     TextView lo;
@@ -68,6 +69,7 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
         ack.setOnClickListener(acknowledgereceipt);
     }
 
+    //load data into listview
     public void setuplistviewcontent()
     {
         new AsyncTask<String,Void,List<Disbursement_Detail>>(){
@@ -84,6 +86,7 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
         }.execute(collect_id);
     }
 
+    //pop up edit dialog when click item
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final Disbursement_Detail item = (Disbursement_Detail) parent.getItemAtPosition(position);
@@ -121,6 +124,7 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
         d.show();
     }
 
+    //load updated quantity in listview
     public void setuplistviewcontentupdated()
     {
         new AsyncTask<Void,Void,List<Disbursement_Detail>>(){
@@ -187,6 +191,7 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
         }
     };
 
+    //business logic to update requisition order detail database on acknowledge
     public View.OnClickListener acknowledgereceipt = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -214,6 +219,7 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
                 }
             }
 
+            //update collection id status to completed in database
             new AsyncTask<String, Void, Boolean>() {
                 @Override
                 protected Boolean doInBackground(String... params) {
@@ -239,8 +245,4 @@ public class AcknowledgeDisbursement extends Activity implements AdapterView.OnI
             }.execute(collect_id);
         }
     };
-
-
-
-
 }

@@ -22,6 +22,8 @@ import Models.Disbursement_List;
 
 public class DisbursementList extends Activity implements AdapterView.OnItemClickListener {
 
+    //Tharrani Udhayasekar
+
     ListView lv;
     Button b;
     TextView l;
@@ -82,6 +84,7 @@ public class DisbursementList extends Activity implements AdapterView.OnItemClic
         };
     }
 
+    //load initial data to listview
     public void setuplistviewcontent()
     {
         new AsyncTask<Void,Void,List<Disbursement_List>>(){
@@ -106,6 +109,7 @@ public class DisbursementList extends Activity implements AdapterView.OnItemClic
         }.execute();
     }
 
+    //display collection detail when clicking collection point
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         Disbursement_List item = (Disbursement_List) parent.getItemAtPosition(position);
@@ -119,6 +123,7 @@ public class DisbursementList extends Activity implements AdapterView.OnItemClic
         finish();
     }
 
+// search original list to match date and return result to listview
     public View.OnClickListener searchbydate = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

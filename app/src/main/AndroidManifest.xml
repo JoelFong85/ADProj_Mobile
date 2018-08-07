@@ -21,13 +21,9 @@
         </activity>
         <activity android:name=".Clerk_MainActivity" />
         <activity android:name=".User_MainActivity" />
-        <activity android:name=".User_RequestFormActivity" />
-        <activity android:name=".User_RequestItemDetailsActivity" />
         <activity android:name=".Clerk_WeeklyCollectionListActivity" />
         <activity android:name=".Clerk_ItemDetailsActivity" />
         <activity android:name=".Clerk_RequisitionOrderSearchActivity" />
-        <activity android:name=".Clerk_OrdersByDept_Activity" />
-        <activity android:name=".User_RequestSummaryActivity" />
         <activity android:name=".DebugActivity" />
         <activity android:name=".Clerk_RequisitionOrder_ItemDetailsActivity" />
         <activity android:name=".ClerkAdjustmentInventoryActivity" />
