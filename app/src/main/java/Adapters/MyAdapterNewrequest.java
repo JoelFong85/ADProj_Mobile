@@ -16,6 +16,7 @@ import Models.Inventory;
 
 public class MyAdapterNewrequest extends ArrayAdapter<Inventory> {
 
+    //Tharrani Udhayasekar
     private List<Inventory> items;
     int resource;
 

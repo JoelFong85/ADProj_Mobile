@@ -30,6 +30,7 @@ import Utilities.JSONParser;
 
 public class NewRequestActivity extends Activity implements AdapterView.OnItemClickListener {
 
+    //Tharrani Udhayasekar
     String select_id;
     ListView lv;
     EditText et;
@@ -60,6 +61,7 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
         b.setOnClickListener(viewcartlistener);
     }
 
+    //add item to cart on click
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Inventory item = (Inventory) parent.getItemAtPosition(position);
@@ -79,6 +81,7 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
                 }.execute(select_id);
             }
 
+            //redirect to request cart activity
     public View.OnClickListener viewcartlistener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -127,6 +130,7 @@ public class NewRequestActivity extends Activity implements AdapterView.OnItemCl
         }
     };
 
+    //method to clear token on logout
     private class LogoutTask extends AsyncTask<String, Void, JSONObject>{
 
         private final WeakReference<Activity> weakActivity;
